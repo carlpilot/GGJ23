@@ -11,10 +11,6 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
-# TextMeshPro and URP defaults
-/[Aa]ssets/TextMesh Pro/
-/[Aa]ssets/Settings/
-
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
