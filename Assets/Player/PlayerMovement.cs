@@ -49,6 +49,10 @@ public class PlayerMovement : MonoBehaviour
 
     
     void Update(){
+        // Do environment checks
+        UpdateGrounded();
+        UpdateOnWall();
+        
         if (isMovementEnabled){
             // Check for mouse move
             var rotX = Input.GetAxis("Mouse X") * sensitivity;
@@ -69,9 +73,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate(){
-        // Do environment checks
-        UpdateGrounded();
-        UpdateOnWall();
+        
 
         // Apply update velocity
         if (isMovementEnabled){
