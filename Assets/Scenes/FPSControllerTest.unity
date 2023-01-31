@@ -1354,6 +1354,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6186241977415978161, guid: ee15e149edfbd664eb3ef251c109c974,
+        type: 3}
+      propertyPath: footRange
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186241977415978161, guid: ee15e149edfbd664eb3ef251c109c974,
+        type: 3}
+      propertyPath: footOffset.y
+      value: -0.65
+      objectReference: {fileID: 0}
     - target: {fileID: 6186241977415978164, guid: ee15e149edfbd664eb3ef251c109c974,
         type: 3}
       propertyPath: m_Name
