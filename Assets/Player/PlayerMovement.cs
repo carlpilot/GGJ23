@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
                 // Check for jumps
                 if (Input.GetKey(KeyCode.Space) && isGrounded){
                     // Jump
-                    body.velocity += Vector3.up*jumpVelocity;
+                    body.velocity += groundNormal*jumpVelocity;
                     //body.velocity =  new Vector3(body.velocity.x, jumpVelocity, body.velocity.y);
                     yield return new WaitForSeconds(jumpDelay);
                 } else{
