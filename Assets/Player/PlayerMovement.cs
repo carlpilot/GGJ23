@@ -138,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
         while (true){
             if (isMovementEnabled){
                 // Check for jumps
-                if (Input.GetKey(KeyCode.Space) && isGrounded){
+                if (Input.GetKey(KeyCode.Space) && isGrounded && !isSliding){
                     // Stop sliding
                     if (isSliding){
                         SetSliding(false);
