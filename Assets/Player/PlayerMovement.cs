@@ -210,6 +210,7 @@ public class PlayerMovement : MonoBehaviour
             camTargetLocalPosition = headPosition.localPosition;
             normalColliders.SetActive(true);
             slidingColliders.SetActive(false);
+            blockSlideTimer = 0.5f;
         }
     }
     void SetSliding(bool sliding){ SetSliding(sliding, transform.forward);}
