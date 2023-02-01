@@ -421,8 +421,8 @@ MonoBehaviour:
   slideSpeedThresholdExitMultiplier: 0.4
   normalColliders: {fileID: 4122235497042201816}
   slidingColliders: {fileID: 4793093053968386986}
-  footOffset: {x: 0, y: -0.58, z: 0}
-  footRange: 0.45
+  footOffset: {x: 0, y: -0.64, z: 0}
+  footRange: 0.4
   wallOffset: {x: 0, y: 0, z: 0}
   wallRange: 0.6
   jumpDelay: 0.25
