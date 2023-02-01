@@ -205,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
             camTargetLocalPosition = slidingHeadPosition.localPosition;
             normalColliders.SetActive(false);
             slidingColliders.SetActive(true);
-            body.velocity += forward * 5f;
+            StartCoroutine(AddDelayedSpeedBoost(forward));
         } else{
             camTargetLocalPosition = headPosition.localPosition;
             normalColliders.SetActive(true);
@@ -214,6 +214,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     void SetSliding(bool sliding){ SetSliding(sliding, transform.forward);}
+
+    IEnumerator AddDelayedSpeedBoost(Vector3 forward){
+        yield return new WaitForSeconds(0.15f);
+        if (isSliding) body.velocity += forward * 5f;
+    }
 
     void OnDrawGizmos()
     {
