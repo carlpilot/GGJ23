@@ -91,7 +91,6 @@ public class PlayerMovement : MonoBehaviour
             transform.Rotate(0, rotX, 0);
 
             // Check inputs for wasd
-            inputVector = Vector3.zero;
             inputVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
             // Check for entering or exiting a slide
