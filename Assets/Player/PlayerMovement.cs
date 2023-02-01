@@ -72,6 +72,10 @@ public class PlayerMovement : MonoBehaviour
         UpdateGrounded();
         UpdateOnWall();
 
+        // Calculate floor forward
+        var normalRot = Quaternion.FromToRotation(Vector3.up, groundNormal);
+        var floorForward = normalRot*transform.forward;
+
         // Update head position
         cam.transform.localPosition = Vector3.MoveTowards(cam.transform.localPosition, camTargetLocalPosition, slideAnimationSpeed*Time.deltaTime);
 
@@ -94,10 +98,10 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.D)) inputVector -= Vector3.left;
 
             // Check for entering or exiting a slide
-            if (enableSliding && !isSliding && blockSlideTimer <= 0 && Input.GetKey(KeyCode.LeftShift) && isGrounded && Vector3.Dot(transform.forward, body.velocity) > slideSpeedThresholdMultiplier*maxSpeed){
-                SetSliding(true);
+            if (enableSliding && !isSliding && blockSlideTimer <= 0 && Input.GetKey(KeyCode.LeftShift) && isGrounded && Vector3.Dot(floorForward, body.velocity) > slideSpeedThresholdMultiplier*maxSpeed){
+                SetSliding(true, floorForward);
             }
-            if (isSliding && (!Input.GetKey(KeyCode.LeftShift) || Vector3.Dot(transform.forward, body.velocity) < slideSpeedThresholdExitMultiplier)){
+            if (isSliding && (!Input.GetKey(KeyCode.LeftShift) || Vector3.Dot(floorForward, body.velocity) < slideSpeedThresholdExitMultiplier)){
                 SetSliding(false);
             }
         } else{
@@ -197,20 +201,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void SetSliding(bool sliding){
+    void SetSliding(bool sliding, Vector3 forward){
         if (isSliding == sliding) return; // Dont do anything is this is already the correct value
         isSliding = sliding;
         if (isSliding){
             camTargetLocalPosition = slidingHeadPosition.localPosition;
             normalColliders.SetActive(false);
             slidingColliders.SetActive(true);
-            body.velocity += transform.forward * 5f;
+            body.velocity += forward * 5f;
         } else{
             camTargetLocalPosition = headPosition.localPosition;
             normalColliders.SetActive(true);
             slidingColliders.SetActive(false);
         }
     }
+    void SetSliding(bool sliding){ SetSliding(sliding, transform.forward);}
 
     void OnDrawGizmos()
     {
