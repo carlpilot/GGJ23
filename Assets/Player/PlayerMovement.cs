@@ -92,10 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Check inputs for wasd
             inputVector = Vector3.zero;
-            if (Input.GetKey(KeyCode.W)) inputVector += Vector3.forward;
-            if (Input.GetKey(KeyCode.S)) inputVector -= Vector3.forward;
-            if (Input.GetKey(KeyCode.A)) inputVector += Vector3.left;
-            if (Input.GetKey(KeyCode.D)) inputVector -= Vector3.left;
+            inputVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
             // Check for entering or exiting a slide
             if (enableSliding && !isSliding && blockSlideTimer <= 0 && Input.GetKey(KeyCode.LeftShift) && isGrounded && Vector3.Dot(floorForward, body.velocity) > slideSpeedThresholdMultiplier*maxSpeed){
