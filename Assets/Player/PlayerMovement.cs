@@ -12,6 +12,16 @@ public class PlayerMovement : MonoBehaviour
     [Header("Airtime")]
     public float airAccelerationMultiplier = 0.1f;
 
+    [Header("Sliding")]
+    public bool enableSliding = true;
+    public float slideHeight = 0.5f;
+    public float slideAccelerationMultiplier = 0.05f;
+    public float slideAnimationSpeed = 1f;
+    public float slideSpeedThresholdMultiplier = 0.8f;
+    public float slideSpeedThresholdExitMultiplier = 0.4f;
+    public GameObject normalColliders;
+    public GameObject slidingColliders;
+
     [Header("Environment Detection")]
     public Vector3 footOffset = new Vector3(0,-0.6f,0);
     public float footRange = 0.45f;
@@ -27,19 +37,28 @@ public class PlayerMovement : MonoBehaviour
     [Header("Camera Setup")]
     public GameObject cam;
     public float sensitivity = 1f;
+    public Transform headPosition;
+    public Transform slidingHeadPosition;
 
+    // Header - State
     public bool isMovementEnabled {get;private set;}
+
     public bool isGrounded {get;private set;}
     public bool isTouchingWall {get;private set;}
+
+    public bool isSliding {get;private set;}
 
     Vector3 groundNormal = Vector3.up;
 
     Vector3 inputVector;
 
     float rotY;
+    Vector3 camTargetLocalPosition;
+    float blockSlideTimer;
     
     void Awake() {
         body = GetComponent<Rigidbody>();
+        camTargetLocalPosition = headPosition.localPosition;
     }
 
     void Start(){
@@ -52,6 +71,12 @@ public class PlayerMovement : MonoBehaviour
         // Do environment checks
         UpdateGrounded();
         UpdateOnWall();
+
+        // Update head position
+        cam.transform.localPosition = Vector3.MoveTowards(cam.transform.localPosition, camTargetLocalPosition, slideAnimationSpeed*Time.deltaTime);
+
+        // Update slide blocking timer
+        blockSlideTimer -= Time.deltaTime;
         
         if (isMovementEnabled){
             // Check for mouse move
@@ -67,14 +92,21 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.S)) inputVector -= Vector3.forward;
             if (Input.GetKey(KeyCode.A)) inputVector += Vector3.left;
             if (Input.GetKey(KeyCode.D)) inputVector -= Vector3.left;
+
+            // Check for entering or exiting a slide
+            if (enableSliding && !isSliding && blockSlideTimer <= 0 && Input.GetKey(KeyCode.LeftShift) && isGrounded && Vector3.Dot(transform.forward, body.velocity) > slideSpeedThresholdMultiplier*maxSpeed){
+                SetSliding(true);
+            }
+            if (isSliding && (!Input.GetKey(KeyCode.LeftShift) || Vector3.Dot(transform.forward, body.velocity) < slideSpeedThresholdExitMultiplier)){
+                SetSliding(false);
+            }
         } else{
             inputVector = Vector3.zero;
+            SetSliding(false);
         }
     }
 
     void FixedUpdate(){
-        
-
         // Apply update velocity
         if (isMovementEnabled){
             var normalRot = Quaternion.FromToRotation(Vector3.up, groundNormal);
@@ -90,8 +122,10 @@ public class PlayerMovement : MonoBehaviour
             var actualForwardAmount = Vector3.Dot(floorForward, body.velocity);
             var actualRightAmount = Vector3.Dot(floorRight, body.velocity);
 
+            if (isSliding && targetForwardAmount > 1) targetForwardAmount = 0;
             var velAdd = ((targetForwardAmount-actualForwardAmount)*floorForward + (targetRightAmount-actualRightAmount)*floorRight)*Time.fixedDeltaTime*acceleration;
-            if(!isGrounded) velAdd *= airAccelerationMultiplier;
+            if (isSliding) velAdd *= slideAccelerationMultiplier;
+            else if(!isGrounded) velAdd *= airAccelerationMultiplier;
             body.velocity += velAdd;
         }
     }
@@ -101,6 +135,12 @@ public class PlayerMovement : MonoBehaviour
             if (isMovementEnabled){
                 // Check for jumps
                 if (Input.GetKey(KeyCode.Space) && isGrounded){
+                    // Stop sliding
+                    if (isSliding){
+                        SetSliding(false);
+                    }
+                    // Block sliding for at least until we can also next jump
+                    blockSlideTimer = jumpDelay;
                     // Jump
                     body.velocity += groundNormal*jumpVelocity;
                     //body.velocity =  new Vector3(body.velocity.x, jumpVelocity, body.velocity.y);
@@ -154,6 +194,21 @@ public class PlayerMovement : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         } else{
             Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    void SetSliding(bool sliding){
+        if (isSliding == sliding) return; // Dont do anything is this is already the correct value
+        isSliding = sliding;
+        if (isSliding){
+            camTargetLocalPosition = slidingHeadPosition.localPosition;
+            normalColliders.SetActive(false);
+            slidingColliders.SetActive(true);
+            body.velocity += transform.forward * 5f;
+        } else{
+            camTargetLocalPosition = headPosition.localPosition;
+            normalColliders.SetActive(true);
+            slidingColliders.SetActive(false);
         }
     }
 
