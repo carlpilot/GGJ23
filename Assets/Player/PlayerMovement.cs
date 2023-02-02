@@ -144,7 +144,8 @@ public class PlayerMovement : MonoBehaviour
                     // Block sliding for at least until we can also next jump
                     blockSlideTimer = jumpDelay;
                     // Jump
-                    body.velocity += groundNormal*jumpVelocity;
+                    if (Vector3.Dot(groundNormal, body.velocity) < 0) body.velocity = Vector3.ProjectOnPlane(body.velocity, groundNormal) + groundNormal*jumpVelocity;
+                    else body.velocity += groundNormal*jumpVelocity;
                     //body.velocity =  new Vector3(body.velocity.x, jumpVelocity, body.velocity.y);
                     yield return new WaitForSeconds(jumpDelay);
                 } else{
@@ -237,6 +238,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void SetDirectionalVelocity(Vector3 direction, float speed){
-        body.velocity = Vector3.ProjectOnPlane(direction, body.velocity) + direction * speed;
+        body.velocity = Vector3.ProjectOnPlane(body.velocity, direction) + direction * speed;
     }
 }
