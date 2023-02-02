@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isMovementEnabled {get;private set;}
 
     public bool isGrounded {get;private set;}
+    PlayerSlideBoost currentSlideBoost;
     public bool isTouchingWall {get;private set;}
 
     public bool isSliding {get;private set;}
@@ -59,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake() {
         body = GetComponent<Rigidbody>();
         camTargetLocalPosition = headPosition.localPosition;
+        Physics.queriesHitTriggers = false;
     }
 
     void Start(){
@@ -166,14 +168,17 @@ public class PlayerMovement : MonoBehaviour
                 //layers &= ~(1 << gameObject.layer);
                 if (Physics.Raycast(transform.TransformPoint(footOffset), transform.up*-1, out var hit/*, layers*/)){
                     groundNormal = hit.normal;
+                    currentSlideBoost = hit.collider.GetComponent<PlayerSlideBoost>();
                 } else{
                     groundNormal = transform.up;
+                    currentSlideBoost = null;
                 }
                 return;
             }
         }
         groundNormal = transform.up;
         isGrounded = false;
+        currentSlideBoost = null;
     }
 
     void UpdateOnWall(){
@@ -216,7 +221,11 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator AddDelayedSpeedBoost(Vector3 forward){
         yield return new WaitForSeconds(0.15f);
-        if (isSliding) body.velocity += forward * 5f;
+        if (isSliding) {
+            var v = forward * 5f;
+            if (currentSlideBoost) v *= currentSlideBoost.slideBoostMultiplier;
+            body.velocity += v;
+        }
     }
 
     void OnDrawGizmos()
@@ -225,5 +234,9 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireSphere(transform.TransformPoint(footOffset), footRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.TransformPoint(wallOffset), wallRange);
+    }
+
+    public void SetDirectionalVelocity(Vector3 direction, float speed){
+        body.velocity = Vector3.ProjectOnPlane(direction, body.velocity) + direction * speed;
     }
 }
