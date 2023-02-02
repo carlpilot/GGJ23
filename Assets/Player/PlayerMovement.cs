@@ -57,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     float rotY;
     Vector3 camTargetLocalPosition;
     float blockSlideTimer;
+    float blockJumpTimer;
     
     void Awake() {
         body = GetComponent<Rigidbody>();
@@ -84,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Update slide blocking timer
         blockSlideTimer -= Time.deltaTime;
+        blockJumpTimer -= Time.deltaTime;
         
         if (isMovementEnabled){
             // Check for mouse move
@@ -140,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         while (true){
             if (isMovementEnabled){
                 // Check for jumps
-                if (Input.GetKey(KeyCode.Space) && isGrounded && !isSliding){
+                if (Input.GetKey(KeyCode.Space) && isGrounded && !isSliding && blockJumpTimer <= 0){
                     // Stop sliding
                     if (isSliding){
                         SetSliding(false);
@@ -246,5 +248,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetDirectionalVelocity(Vector3 direction, float speed){
         body.velocity = Vector3.ProjectOnPlane(body.velocity, direction) + direction * speed;
+        blockJumpTimer = 0.15f;
+    }
+
+    public void ReflectVelocity(Vector3 normal){
+        body.velocity = Vector3.Reflect(body.velocity, normal);
+        blockJumpTimer = 0.15f;
     }
 }
