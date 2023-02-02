@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isGrounded {get;private set;}
     PlayerSlideBoost currentSlideBoost;
+    PlayerSlip currentSlip;
     public bool isTouchingWall {get;private set;}
 
     public bool isSliding {get;private set;}
@@ -94,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Check inputs for wasd
             inputVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            if (inputVector.magnitude > 1) inputVector = inputVector.normalized;
 
             // Check for entering or exiting a slide
             if (enableSliding && !isSliding && blockSlideTimer <= 0 && Input.GetKey(KeyCode.LeftShift) && isGrounded && Vector3.Dot(floorForward, body.velocity) > slideSpeedThresholdMultiplier*maxSpeed){
@@ -128,6 +130,8 @@ public class PlayerMovement : MonoBehaviour
             var velAdd = ((targetForwardAmount-actualForwardAmount)*floorForward + (targetRightAmount-actualRightAmount)*floorRight)*Time.fixedDeltaTime*acceleration;
             if (isSliding) velAdd *= slideAccelerationMultiplier;
             else if(!isGrounded) velAdd *= airAccelerationMultiplier;
+            
+            if (currentSlip) velAdd *= currentSlip.slipMultiplier;
             body.velocity += velAdd;
         }
     }
@@ -170,9 +174,11 @@ public class PlayerMovement : MonoBehaviour
                 if (Physics.Raycast(transform.TransformPoint(footOffset), transform.up*-1, out var hit/*, layers*/)){
                     groundNormal = hit.normal;
                     currentSlideBoost = hit.collider.GetComponent<PlayerSlideBoost>();
+                    currentSlip = hit.collider.GetComponent<PlayerSlip>();
                 } else{
                     groundNormal = transform.up;
                     currentSlideBoost = null;
+                    currentSlip = null;
                 }
                 return;
             }
@@ -180,6 +186,7 @@ public class PlayerMovement : MonoBehaviour
         groundNormal = transform.up;
         isGrounded = false;
         currentSlideBoost = null;
+        currentSlip = null;
     }
 
     void UpdateOnWall(){

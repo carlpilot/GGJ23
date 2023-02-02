@@ -354,6 +354,7 @@ GameObject:
   - component: {fileID: 6186241977415978166}
   - component: {fileID: 6186241977415978167}
   - component: {fileID: 6186241977415978161}
+  - component: {fileID: 2107721402}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -411,8 +412,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  acceleration: 10
-  airAccelerationMultiplier: 0.1
+  acceleration: 20
+  airAccelerationMultiplier: 0.025
   enableSliding: 1
   slideHeight: 0.5
   slideAccelerationMultiplier: 0.02
@@ -431,6 +432,18 @@ MonoBehaviour:
   sensitivity: 3
   headPosition: {fileID: 7764283567189142324}
   slidingHeadPosition: {fileID: 7657731366262055395}
+--- !u!114 &2107721402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6186241977415978164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094f447cb588ab245ba6e5cc265f2df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7510857848964668189
 GameObject:
   m_ObjectHideFlags: 0
