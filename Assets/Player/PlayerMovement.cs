@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
             body.velocity += velAdd;
 
             var flatVelocity = Vector3.ProjectOnPlane(body.velocity, Vector3.up);
-            if (blockWallRunTimer <= 0 && !isGrounded && isTouchingWall && enableWallRunning && flatVelocity.magnitude >= maxSpeed * wallRunSpeedThresholdMultiplier){
+            if (blockWallRunTimer <= 0 && !isGrounded && isTouchingWall && !isSliding && enableWallRunning && flatVelocity.magnitude >= maxSpeed * wallRunSpeedThresholdMultiplier){
                 body.velocity = flatVelocity - wallNormal*wallStickAcceleration*Time.deltaTime;
                 isWallRunning = true;
             } else{
