@@ -9,6 +9,11 @@ public class PlayerMovement : MonoBehaviour
     public float maxSpeed = 5;
     public float acceleration = 10f;
 
+    [Header("Wall Running")]
+    public bool enableWallRunning = true;
+    public float wallRunSpeedThresholdMultiplier = 0.8f;
+    public float wallStickAcceleration = 0.1f;
+
     [Header("Airtime")]
     public float airAccelerationMultiplier = 0.1f;
 
@@ -47,10 +52,13 @@ public class PlayerMovement : MonoBehaviour
     PlayerSlideBoost currentSlideBoost;
     PlayerSlip currentSlip;
     public bool isTouchingWall {get;private set;}
+    public bool isWallRunning {get;private set;}
 
     public bool isSliding {get;private set;}
 
     Vector3 groundNormal = Vector3.up;
+
+    Vector3 wallNormal;
 
     Vector3 inputVector;
 
@@ -58,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 camTargetLocalPosition;
     float blockSlideTimer;
     float blockJumpTimer;
+    float blockWallRunTimer;
     
     void Awake() {
         body = GetComponent<Rigidbody>();
@@ -86,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
         // Update slide blocking timer
         blockSlideTimer -= Time.deltaTime;
         blockJumpTimer -= Time.deltaTime;
+        blockWallRunTimer -= Time.deltaTime;
         
         if (isMovementEnabled){
             // Check for mouse move
@@ -135,6 +145,14 @@ public class PlayerMovement : MonoBehaviour
             
             if (currentSlip) velAdd *= currentSlip.slipMultiplier;
             body.velocity += velAdd;
+
+            var flatVelocity = Vector3.ProjectOnPlane(body.velocity, Vector3.up);
+            if (blockWallRunTimer <= 0 && !isGrounded && isTouchingWall && enableWallRunning && flatVelocity.magnitude >= maxSpeed * wallRunSpeedThresholdMultiplier){
+                body.velocity = flatVelocity - wallNormal*wallStickAcceleration*Time.deltaTime;
+                isWallRunning = true;
+            } else{
+                isWallRunning = false;
+            }
         }
     }
 
@@ -142,16 +160,17 @@ public class PlayerMovement : MonoBehaviour
         while (true){
             if (isMovementEnabled){
                 // Check for jumps
-                if (Input.GetKey(KeyCode.Space) && isGrounded && !isSliding && blockJumpTimer <= 0){
-                    // Stop sliding
-                    if (isSliding){
-                        SetSliding(false);
-                    }
+                if (Input.GetKey(KeyCode.Space) && (isGrounded || isWallRunning) && !isSliding && blockJumpTimer <= 0){
                     // Block sliding for at least until we can also next jump
                     blockSlideTimer = jumpDelay;
                     // Jump
-                    if (Vector3.Dot(groundNormal, body.velocity) < 0) body.velocity = Vector3.ProjectOnPlane(body.velocity, groundNormal) + groundNormal*jumpVelocity;
-                    else body.velocity += groundNormal*jumpVelocity;
+                    if (isGrounded){
+                        if (Vector3.Dot(groundNormal, body.velocity) < 0) body.velocity = Vector3.ProjectOnPlane(body.velocity, groundNormal) + groundNormal*jumpVelocity;
+                        else body.velocity += groundNormal*jumpVelocity;
+                    } else if (isWallRunning){
+                        body.velocity += Vector3.up*jumpVelocity + wallNormal*jumpVelocity;
+                        blockWallRunTimer = 0.5f;
+                    }
                     //body.velocity =  new Vector3(body.velocity.x, jumpVelocity, body.velocity.y);
                     yield return new WaitForSeconds(jumpDelay);
                 } else{
@@ -192,15 +211,27 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void UpdateOnWall(){
-        Collider[] hitColliders = Physics.OverlapSphere(transform.TransformPoint(wallOffset), wallRange);
+        /*Collider[] hitColliders = Physics.OverlapSphere(transform.TransformPoint(wallOffset), wallRange);
         foreach (var hitCollider in hitColliders){
             // We dont want to pick up any player colliders as the ground
             if (hitCollider.gameObject.layer != gameObject.layer){
                 isTouchingWall = true;
                 return;
             }
+        }*/
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.right*-1, out hit, wallRange, Physics.AllLayers) && hit.collider.gameObject.GetComponent<WallRunnable>()){
+            isTouchingWall = true;
+            wallNormal = hit.normal;
+            return;
+        }
+        if (Physics.Raycast(transform.position, transform.right, out hit, wallRange, Physics.AllLayers) && hit.collider.gameObject.GetComponent<WallRunnable>()){
+            isTouchingWall = true;
+            wallNormal = hit.normal;
+            return;
         }
         isTouchingWall = false;
+        wallNormal = Vector3.zero;
     }
 
     public void SetMovementEnabled(bool enabled){
