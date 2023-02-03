@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2174208026441243742}
   - component: {fileID: 4163755872532932756}
   m_Layer: 0
-  m_Name: stalactite1
+  m_Name: Stalactite1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
