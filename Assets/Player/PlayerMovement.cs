@@ -27,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
     public GameObject normalColliders;
     public GameObject slidingColliders;
 
+    [Header("Ziplining")]
+    public bool enableZiplining = true;
+    public float ziplineSpeed = 10f;
+
     [Header("Environment Detection")]
     public Vector3 footOffset = new Vector3(0,-0.6f,0);
     public float footRange = 0.45f;
@@ -62,11 +66,15 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 inputVector;
 
+    Zipline currentZipline;
+    float currentZiplineDirection;
+
     float rotY;
     Vector3 camTargetLocalPosition;
     float blockSlideTimer;
     float blockJumpTimer;
     float blockWallRunTimer;
+    float blockZiplineTimer;
     
     void Awake() {
         body = GetComponent<Rigidbody>();
@@ -96,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
         blockSlideTimer -= Time.deltaTime;
         blockJumpTimer -= Time.deltaTime;
         blockWallRunTimer -= Time.deltaTime;
+        blockZiplineTimer -= Time.deltaTime;
         
         if (isMovementEnabled){
             // Check for mouse move
@@ -105,15 +114,21 @@ public class PlayerMovement : MonoBehaviour
             cam.transform.localRotation = Quaternion.Euler(rotY, 0, 0);
             transform.Rotate(0, rotX, 0);
 
-            // Check inputs for wasd
-            inputVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            if (inputVector.magnitude > 1) inputVector = inputVector.normalized;
+            // Can't move on a zipline
+            if (currentZipline == null){
+                // Check inputs for wasd
+                inputVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                if (inputVector.magnitude > 1) inputVector = inputVector.normalized;
 
-            // Check for entering or exiting a slide
-            if (enableSliding && !isSliding && blockSlideTimer <= 0 && Input.GetKey(KeyCode.LeftShift) && isGrounded && Vector3.Dot(floorForward, body.velocity) > slideSpeedThresholdMultiplier*maxSpeed){
-                SetSliding(true, floorForward);
-            }
-            if (isSliding && (!Input.GetKey(KeyCode.LeftShift) || Vector3.Dot(floorForward, body.velocity) < slideSpeedThresholdExitMultiplier)){
+                // Check for entering or exiting a slide
+                if (enableSliding && !isSliding && blockSlideTimer <= 0 && Input.GetKey(KeyCode.LeftShift) && isGrounded && Vector3.Dot(floorForward, body.velocity) > slideSpeedThresholdMultiplier*maxSpeed){
+                    SetSliding(true, floorForward);
+                }
+                if (isSliding && (!Input.GetKey(KeyCode.LeftShift) || Vector3.Dot(floorForward, body.velocity) < slideSpeedThresholdExitMultiplier)){
+                    SetSliding(false);
+                }   
+            } else{
+                inputVector = Vector3.zero;
                 SetSliding(false);
             }
         } else{
@@ -130,28 +145,39 @@ public class PlayerMovement : MonoBehaviour
             var floorRight = normalRot*transform.right;
             Debug.DrawRay(transform.position, floorForward, Color.red, Time.fixedDeltaTime);
 
-            var transformedInputVector = normalRot*transform.TransformDirection(inputVector);
-            Debug.DrawRay(transform.position, transformedInputVector, Color.blue, Time.fixedDeltaTime);
+            if (currentZipline == null){
+                var transformedInputVector = normalRot*transform.TransformDirection(inputVector);
+                Debug.DrawRay(transform.position, transformedInputVector, Color.blue, Time.fixedDeltaTime);
 
-            var targetForwardAmount = Vector3.Dot(floorForward, transformedInputVector*maxSpeed);
-            var targetRightAmount = Vector3.Dot(floorRight, transformedInputVector*maxSpeed);
-            var actualForwardAmount = Vector3.Dot(floorForward, body.velocity);
-            var actualRightAmount = Vector3.Dot(floorRight, body.velocity);
+                var targetForwardAmount = Vector3.Dot(floorForward, transformedInputVector*maxSpeed);
+                var targetRightAmount = Vector3.Dot(floorRight, transformedInputVector*maxSpeed);
+                var actualForwardAmount = Vector3.Dot(floorForward, body.velocity);
+                var actualRightAmount = Vector3.Dot(floorRight, body.velocity);
 
-            if (isSliding && targetForwardAmount > 1) targetForwardAmount = 0;
-            var velAdd = ((targetForwardAmount-actualForwardAmount)*floorForward + (targetRightAmount-actualRightAmount)*floorRight)*Time.fixedDeltaTime*acceleration;
-            if (isSliding) velAdd *= slideAccelerationMultiplier;
-            else if(!isGrounded) velAdd *= airAccelerationMultiplier;
-            
-            if (currentSlip) velAdd *= currentSlip.slipMultiplier;
-            body.velocity += velAdd;
+                if (isSliding && targetForwardAmount > 1) targetForwardAmount = 0;
+                var velAdd = ((targetForwardAmount-actualForwardAmount)*floorForward + (targetRightAmount-actualRightAmount)*floorRight)*Time.fixedDeltaTime*acceleration;
+                if (isSliding) velAdd *= slideAccelerationMultiplier;
+                else if(!isGrounded) velAdd *= airAccelerationMultiplier;
+                
+                if (currentSlip) velAdd *= currentSlip.slipMultiplier;
+                body.velocity += velAdd;
 
-            var flatVelocity = Vector3.ProjectOnPlane(body.velocity, Vector3.up);
-            if (blockWallRunTimer <= 0 && !isGrounded && isTouchingWall && !isSliding && enableWallRunning && flatVelocity.magnitude >= maxSpeed * wallRunSpeedThresholdMultiplier){
-                body.velocity = flatVelocity - wallNormal*wallStickAcceleration*Time.deltaTime;
-                isWallRunning = true;
+                var flatVelocity = Vector3.ProjectOnPlane(body.velocity, Vector3.up);
+                if (blockWallRunTimer <= 0 && !isGrounded && isTouchingWall && !isSliding && enableWallRunning && flatVelocity.magnitude >= maxSpeed * wallRunSpeedThresholdMultiplier){
+                    body.velocity = flatVelocity - wallNormal*wallStickAcceleration*Time.deltaTime;
+                    isWallRunning = true;
+                } else{
+                    isWallRunning = false;
+                }
             } else{
-                isWallRunning = false;
+                if (currentZipline.IsOnZipline(transform.position) && !(Input.GetKey(KeyCode.E) && blockZiplineTimer < 0)){
+                    var corrective = currentZipline.GetOnZiplinePos(transform.position, 0) - transform.position;
+                    var speed = currentZipline.GetDirection() * currentZiplineDirection * ziplineSpeed;
+                    body.velocity = speed + corrective*5f;
+                } else{
+                    currentZipline = null;
+                    blockZiplineTimer = 0.5f;
+                }
             }
         }
     }
@@ -286,4 +312,12 @@ public class PlayerMovement : MonoBehaviour
         body.velocity = Vector3.Reflect(body.velocity, normal);
         blockJumpTimer = 0.15f;
     }
+
+    public void SetCurrentZipline(Zipline z, float dir){
+        if (currentZipline || !enableZiplining || blockZiplineTimer >= 0) return;
+        currentZipline = z;
+        currentZiplineDirection = dir;
+        blockZiplineTimer = 0.5f;
+    }
+
 }

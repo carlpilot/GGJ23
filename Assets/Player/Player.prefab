@@ -414,7 +414,7 @@ MonoBehaviour:
   acceleration: 20
   enableWallRunning: 1
   wallRunSpeedThresholdMultiplier: 0.8
-  wallStickAcceleration: 0.1
+  wallStickAcceleration: 10
   airAccelerationMultiplier: 0.025
   enableSliding: 1
   slideHeight: 0.5
@@ -424,10 +424,12 @@ MonoBehaviour:
   slideSpeedThresholdExitMultiplier: 0.4
   normalColliders: {fileID: 4122235497042201816}
   slidingColliders: {fileID: 4793093053968386986}
+  enableZiplining: 1
+  ziplineSpeed: 20
   footOffset: {x: 0, y: -0.64, z: 0}
   footRange: 0.4
   wallOffset: {x: 0, y: 0, z: 0}
-  wallRange: 0.6
+  wallRange: 0.7
   jumpDelay: 0.25
   jumpVelocity: 7
   cam: {fileID: 6186241977131882032}
