@@ -14,7 +14,7 @@ public class BouncePlayerOnTouch : MonoBehaviour
     
     void OnTriggerEnter(Collider col){
         if (col.transform.GetComponentInParent<PlayerMovement>()){
-            col.transform.GetComponentInParent<PlayerMovement>().SetDirectionalVelocity(Vector3.up, bounceSpeed);
+            col.transform.GetComponentInParent<PlayerMovement>().SetDirectionalVelocity(transform.up, bounceSpeed);
             audio.Play();
         }
     }

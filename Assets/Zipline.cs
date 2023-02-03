@@ -29,4 +29,21 @@ public class Zipline : MonoBehaviour
         var zPos = GetOnZiplinePos(pos, 0);
         return Vector3.Dot(zPos - endA.transform.position, zPos - endB.transform.position) < 0;
     }
+
+    public void toggleColor(bool on){
+
+        var rend = GetComponent<Renderer>();
+        if (on) rend.material.color = Color.green;
+        else rend.material.color = Color.white;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        toggleColor(true);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        toggleColor(false);
+    }
 }
