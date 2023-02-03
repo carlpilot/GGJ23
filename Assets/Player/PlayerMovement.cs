@@ -161,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
                 if (isSliding) velAdd *= slideAccelerationMultiplier;
                 else if(!isGrounded) velAdd *= airAccelerationMultiplier;
                 
-                if (blockAccelerationTimer < 0){
+                if (true||blockAccelerationTimer < 0){
                     if (currentSlip) velAdd *= currentSlip.slipMultiplier;
                     body.velocity += velAdd;
 
