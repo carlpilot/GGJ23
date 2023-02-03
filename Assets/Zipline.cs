@@ -16,7 +16,7 @@ public class Zipline : MonoBehaviour
         var pm = col.GetComponentInParent<PlayerMovement>();
         if (!pm) return;
         var zd = 0;
-        if (Vector3.Dot(GetDirection(), pm.transform.forward) > 0) zd = 1;
+        if (Vector3.Dot(GetDirection(), pm.cam.transform.forward) > 0) zd = 1;
         else zd = -1;
         pm.SetCurrentZipline(this, zd);
     }
