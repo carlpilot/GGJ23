@@ -75,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
     float blockJumpTimer;
     float blockWallRunTimer;
     float blockZiplineTimer;
+    float blockAccelerationTimer;
     
     void Awake() {
         body = GetComponent<Rigidbody>();
@@ -105,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
         blockJumpTimer -= Time.deltaTime;
         blockWallRunTimer -= Time.deltaTime;
         blockZiplineTimer -= Time.deltaTime;
+        blockAccelerationTimer -= Time.deltaTime;
         
         if (isMovementEnabled){
             // Check for mouse move
@@ -159,15 +161,17 @@ public class PlayerMovement : MonoBehaviour
                 if (isSliding) velAdd *= slideAccelerationMultiplier;
                 else if(!isGrounded) velAdd *= airAccelerationMultiplier;
                 
-                if (currentSlip) velAdd *= currentSlip.slipMultiplier;
-                body.velocity += velAdd;
+                if (blockAccelerationTimer < 0){
+                    if (currentSlip) velAdd *= currentSlip.slipMultiplier;
+                    body.velocity += velAdd;
 
-                var flatVelocity = Vector3.ProjectOnPlane(body.velocity, Vector3.up);
-                if (blockWallRunTimer <= 0 && !isGrounded && isTouchingWall && !isSliding && enableWallRunning && flatVelocity.magnitude >= maxSpeed * wallRunSpeedThresholdMultiplier){
-                    body.velocity = flatVelocity - wallNormal*wallStickAcceleration*Time.deltaTime;
-                    isWallRunning = true;
-                } else{
-                    isWallRunning = false;
+                    var flatVelocity = Vector3.ProjectOnPlane(body.velocity, Vector3.up);
+                    if (blockWallRunTimer <= 0 && !isGrounded && isTouchingWall && !isSliding && enableWallRunning && flatVelocity.magnitude >= maxSpeed * wallRunSpeedThresholdMultiplier){
+                        body.velocity = flatVelocity - wallNormal*wallStickAcceleration*Time.deltaTime;
+                        isWallRunning = true;
+                    } else{
+                        isWallRunning = false;
+                    }
                 }
             } else{
                 if (currentZipline.IsOnZipline(transform.position) && !(Input.GetKey(KeyCode.E) && blockZiplineTimer < 0)){
@@ -215,6 +219,7 @@ public class PlayerMovement : MonoBehaviour
         foreach (var hitCollider in hitColliders){
             // We dont want to pick up any player colliders as the ground
             if (hitCollider.gameObject.layer != gameObject.layer){
+                if (!isGrounded) blockAccelerationTimer = 0.25f;
                 isGrounded = true;
                 //LayerMask layers = Physics.AllLayers;
                 //layers &= ~(1 << gameObject.layer);
@@ -277,11 +282,13 @@ public class PlayerMovement : MonoBehaviour
             normalColliders.SetActive(false);
             slidingColliders.SetActive(true);
             StartCoroutine(AddDelayedSpeedBoost(forward));
+            blockAccelerationTimer = 0.25f;
         } else{
             camTargetLocalPosition = headPosition.localPosition;
             normalColliders.SetActive(true);
             slidingColliders.SetActive(false);
             blockSlideTimer = 0.5f;
+            blockAccelerationTimer = 0.25f;
         }
     }
     void SetSliding(bool sliding){ SetSliding(sliding, transform.forward);}
