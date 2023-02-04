@@ -115,13 +115,13 @@ public class PlayerMovement : MonoBehaviour
         
         if (isMovementEnabled){
             // Check for mouse move
-            if (!gameManager.isPaused) {
-                var rotX = Input.GetAxis ("Mouse X") * sensitivity;
-                rotY -= Input.GetAxis ("Mouse Y") * sensitivity;
-                rotY = Mathf.Clamp (rotY, -90, 90);
-                cam.transform.localRotation = Quaternion.Euler (rotY, 0, 0);
-                transform.Rotate (0, rotX, 0);
-            }
+            //if (!gameManager.isPaused) {
+            var rotX = Input.GetAxis ("Mouse X") * sensitivity;
+            rotY -= Input.GetAxis ("Mouse Y") * sensitivity;
+            rotY = Mathf.Clamp (rotY, -90, 90);
+            cam.transform.localRotation = Quaternion.Euler (rotY, 0, 0);
+            transform.Rotate (0, rotX, 0);
+            //}
 
             // Can't move on a zipline
             if (currentZipline == null){

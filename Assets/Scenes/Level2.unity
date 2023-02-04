@@ -222,6 +222,68 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 85.204, z: 0}
+--- !u!1 &109802851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 109802852}
+  - component: {fileID: 109802854}
+  - component: {fileID: 109802853}
+  m_Layer: 0
+  m_Name: Ziplines
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &109802852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109802851}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 67.85, y: 18.63, z: 47.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1950439143}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &109802853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109802851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435daf401db738968819311bdb9d8216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clear: 0
+  msg: Oh no, another cave! I gue i'll have to keep exploring to find the way out.
+  timeout: 10
+  isHint: 0
+--- !u!135 &109802854
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109802851}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4.24
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &132767885
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +446,7 @@ MonoBehaviour:
   clear: 1
   msg: 
   timeout: 10
+  isHint: 1
 --- !u!135 &188274008
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -514,6 +577,7 @@ MonoBehaviour:
   clear: 1
   msg: 
   timeout: 10
+  isHint: 1
 --- !u!135 &342032017
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -576,6 +640,7 @@ MonoBehaviour:
   msg: To run on walls, run as fast as you can and jump onto them at a shallow angle.
     You can press jump at any time to jump off the wall.
   timeout: 10
+  isHint: 1
 --- !u!135 &355637685
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -637,6 +702,7 @@ MonoBehaviour:
   clear: 0
   msg: You can exit a zipline early with 'e'
   timeout: 10
+  isHint: 1
 --- !u!135 &363178716
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1030,6 +1096,7 @@ Transform:
   m_Children:
   - {fileID: 3549196746228928309}
   - {fileID: 1799682191}
+  - {fileID: 1950439143}
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1248,6 +1315,7 @@ MonoBehaviour:
   msg: Press 'e' when near to a zipline to travel along it in the direction you are
     facing
   timeout: 10
+  isHint: 1
 --- !u!135 &741799895
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1340,6 +1408,7 @@ MonoBehaviour:
   clear: 1
   msg: 
   timeout: 10
+  isHint: 1
 --- !u!135 &792600008
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1938,6 +2007,68 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 40.38, z: 13.505}
+--- !u!1 &1642109518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1642109519}
+  - component: {fileID: 1642109521}
+  - component: {fileID: 1642109520}
+  m_Layer: 0
+  m_Name: Ziplines (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1642109519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642109518}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -64.09, y: -5.79, z: -56.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1950439143}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1642109520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642109518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435daf401db738968819311bdb9d8216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clear: 0
+  msg: That was tough but I made it. I hope the way out is near!
+  timeout: 10
+  isHint: 0
+--- !u!135 &1642109521
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642109518}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4.24
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1649572454
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,7 +2388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1799682191}
   m_Layer: 0
-  m_Name: Triggers
+  m_Name: HintTriggers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2677,6 +2808,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 40.38, z: 0}
+--- !u!1 &1950439142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1950439143}
+  m_Layer: 0
+  m_Name: DialogTriggers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1950439143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950439142}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 109802852}
+  - {fileID: 2087547424}
+  - {fileID: 1642109519}
+  m_Father: {fileID: 591948956}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2087547423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2087547424}
+  - component: {fileID: 2087547426}
+  - component: {fileID: 2087547425}
+  m_Layer: 0
+  m_Name: Ziplines (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2087547424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087547423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 44.28, y: 16.37, z: 27.39}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1950439143}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2087547425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087547423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435daf401db738968819311bdb9d8216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clear: 0
+  msg: WOOOOOOOOOOOOOOOOOOOOO
+  timeout: 10
+  isHint: 0
+--- !u!135 &2087547426
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087547423}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4.24
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2101067255
 GameObject:
   m_ObjectHideFlags: 0
