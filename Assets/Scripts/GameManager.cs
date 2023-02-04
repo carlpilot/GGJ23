@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour {
     public TMP_Text rank;
     public GameObject loadingScoresText;
 
+    [Header ("Win / Lose Logic")]
+    public float loseWait = 2.0f;
+
     [Header ("Curtains")]
     public Color loseCurtainColour;
     public Color winCurtainColour;
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Pause () {
+        if (!winnable) return; // no pause if win or lose screen is up
         movement = player.isMovementEnabled;
         player.SetMovementEnabled (false);
         pauseMenu.SetActive (true);
@@ -76,6 +80,8 @@ public class GameManager : MonoBehaviour {
         if (!winnable) return;
         winnable = false;
         winMenu.SetActive (true);
+        curtains.SetColour (winCurtainColour);
+        curtains.Close ();
         PutGetHighScores (timer.time);
         timer.StopTime ();
         player.SetMovementEnabled (false);
@@ -88,6 +94,18 @@ public class GameManager : MonoBehaviour {
         curtains.Close ();
         timer.StopTime ();
         player.SetMovementEnabled (false);
+        StartCoroutine (WaitResetLevel ());
+    }
+
+    IEnumerator WaitResetLevel () {
+        AsyncOperation a = SceneManager.LoadSceneAsync (level);
+        a.allowSceneActivation = false;
+        float startTime = Time.unscaledTime;
+        while (Time.unscaledTime - startTime < loseWait) {
+            yield return null;
+        }
+        //RestartLevel ();
+        a.allowSceneActivation = true;
     }
 
     public void NextLevel () {

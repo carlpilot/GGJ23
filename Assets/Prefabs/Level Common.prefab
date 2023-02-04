@@ -1814,7 +1814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   left: {fileID: 2096260957}
   right: {fileID: 1239907017}
-  speed: 2000
+  speed: 1000
   screenCoverFraction: 0.65
 --- !u!1 &1146230806
 GameObject:
@@ -4743,7 +4743,8 @@ MonoBehaviour:
   thisTime: {fileID: 118566880}
   bestTime: {fileID: 182278729}
   rank: {fileID: 167815342}
-  loadingScoresText: {fileID: 0}
+  loadingScoresText: {fileID: 2069092141786483421}
+  loseWait: 1
   loseCurtainColour: {r: 0, g: 0, b: 0, a: 0.9019608}
   winCurtainColour: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 0.9019608}
   startCurtainColour: {r: 0.54, g: 0.54, b: 0.54, a: 0.9019608}
