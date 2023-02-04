@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 4904834377174095076}
   - component: {fileID: 6039587963182286946}
   m_Layer: 0
-  m_Name: Boulders2
+  m_Name: boulders2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6078263270769815435
 Transform:
