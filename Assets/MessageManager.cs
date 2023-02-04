@@ -69,6 +69,7 @@ public class MessageManager : MonoBehaviour
             ch[i] = msg[i];
         }
         remainingQuoteText = ch;
+        quoteTimer = -1;
     }
 
     public void ClearQuote(){
