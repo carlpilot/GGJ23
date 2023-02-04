@@ -5,16 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    [Header("Menus")]
     public GameObject pauseMenu;
+    public GameObject loseMenu;
+
+    [Header ("Curtains")]
+    public Color loseCurtainColour;
+    public Color winCurtainColour;
+    public Color startCurtainColour;
+
     public bool isPaused { get; private set; }
-    CursorLockMode clm;
+    PlayerMovement player;
+    bool movement;
+
+    Curtains curtains;
 
     private void Awake () {
         Time.timeScale = 1;
+        player = FindObjectOfType<PlayerMovement> ();
+        curtains = FindObjectOfType<Curtains> ();
     }
 
     private void Start () {
-        
+        curtains.SetPosition (curtains.closeAmount);
+        curtains.SetColour (startCurtainColour);
+        curtains.Open ();
     }
 
     private void Update () {
@@ -24,16 +39,16 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Pause () {
-        clm = Cursor.lockState;
-        Cursor.lockState = CursorLockMode.None;
+        movement = player.isMovementEnabled;
+        player.SetMovementEnabled (false);
         pauseMenu.SetActive (true);
         isPaused = true;
         Time.timeScale = 0;
     }
 
     public void Unpause () {
-        Cursor.lockState = clm;
-        pauseMenu.SetActive (false);
+        player.SetMovementEnabled (movement);
+        pauseMenu.SetActive (false);        
         isPaused = false;
         Time.timeScale = 1;
     }
@@ -43,11 +58,13 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Lose () {
-
+        loseMenu.SetActive (true);
+        curtains.SetColour (loseCurtainColour);
+        curtains.Close ();
     }
 
     public void NextLevel () {
-
+        SwitchScene (SceneManager.GetActiveScene ().buildIndex + 1);
     }
 
     public void RestartLevel () {
