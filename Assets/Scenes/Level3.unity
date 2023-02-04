@@ -1929,6 +1929,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ruin1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2237570552337866834, guid: 2aa04c0d9c38caa4a8f7cb4c7bc09e9d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2aa04c0d9c38caa4a8f7cb4c7bc09e9d, type: 3}
 --- !u!4 &342400881 stripped
@@ -2562,6 +2567,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom1
       objectReference: {fileID: 0}
+    - target: {fileID: 3762233336082845776, guid: dbb1bb440935d40408edc9aa4dfd0eae,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4575080964269116138, guid: dbb1bb440935d40408edc9aa4dfd0eae,
         type: 3}
       propertyPath: m_RootOrder
@@ -2895,6 +2905,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mushroom1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3762233336082845776, guid: dbb1bb440935d40408edc9aa4dfd0eae,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4575080964269116138, guid: dbb1bb440935d40408edc9aa4dfd0eae,
         type: 3}
@@ -3558,6 +3573,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bones1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055983001779375085, guid: 628abd335ea31764eb9dda7008e4e2fa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 628abd335ea31764eb9dda7008e4e2fa, type: 3}
@@ -4927,6 +4947,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ruin1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237570552337866834, guid: 2aa04c0d9c38caa4a8f7cb4c7bc09e9d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2aa04c0d9c38caa4a8f7cb4c7bc09e9d, type: 3}
@@ -7634,6 +7659,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3762233336082845776, guid: dbb1bb440935d40408edc9aa4dfd0eae,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4575080964269116138, guid: dbb1bb440935d40408edc9aa4dfd0eae,
         type: 3}
       propertyPath: m_RootOrder
@@ -7784,6 +7814,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mushroom1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3762233336082845776, guid: dbb1bb440935d40408edc9aa4dfd0eae,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4575080964269116138, guid: dbb1bb440935d40408edc9aa4dfd0eae,
         type: 3}
@@ -8647,6 +8682,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mushroom1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3762233336082845776, guid: dbb1bb440935d40408edc9aa4dfd0eae,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4575080964269116138, guid: dbb1bb440935d40408edc9aa4dfd0eae,
         type: 3}
