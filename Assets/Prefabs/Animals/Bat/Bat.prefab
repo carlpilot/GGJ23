@@ -47,7 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: {fileID: 0}
   speed: 7.5
-  turnSpeed: 180
+  turnSpeed: 90
+  positionRandomness: 6
+  speedRandomness: 0.1
 --- !u!1001 &4321051002015279399
 PrefabInstance:
   m_ObjectHideFlags: 0
