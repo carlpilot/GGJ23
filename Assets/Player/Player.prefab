@@ -413,7 +413,7 @@ MonoBehaviour:
   maxSpeed: 10
   acceleration: 20
   enableWallRunning: 1
-  wallRunSpeedThresholdMultiplier: 0.8
+  wallRunSpeedThresholdMultiplier: 0.7
   wallStickAcceleration: 10
   airAccelerationMultiplier: 0.025
   enableSliding: 1
