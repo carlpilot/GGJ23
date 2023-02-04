@@ -32,9 +32,9 @@ public class Zipline : MonoBehaviour
 
     public void toggleColor(bool on){
 
-        var rend = GetComponent<Renderer>();
-        if (on) rend.material.color = Color.green;
-        else rend.material.color = Color.white;
+        var rend = GetComponentInChildren<Renderer>();
+        if (on) rend.material.EnableKeyword("_EMISSION");
+        else rend.material.DisableKeyword("_EMISSION");
     }
 
     public void OnTriggerEnter(Collider other)
