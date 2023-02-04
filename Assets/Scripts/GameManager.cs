@@ -8,13 +8,24 @@ public class GameManager : MonoBehaviour {
     public GameObject pauseMenu;
     public bool isPaused { get; private set; }
     CursorLockMode clm;
+    PlayerMovement player;
+    bool movement;
+
+    [Header ("Win/Lose")]
+    public Color loseCurtainColour;
+
+    Curtains curtains;
 
     private void Awake () {
         Time.timeScale = 1;
+        player = FindObjectOfType<PlayerMovement> ();
+        curtains = FindObjectOfType<Curtains> ();
     }
 
     private void Start () {
-        
+        curtains.SetPosition (curtains.closeAmount);
+        curtains.SetColour (loseCurtainColour);
+        curtains.Open ();
     }
 
     private void Update () {
@@ -24,16 +35,19 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Pause () {
-        clm = Cursor.lockState;
-        Cursor.lockState = CursorLockMode.None;
+        //clm = Cursor.lockState;
+        //Cursor.lockState = CursorLockMode.None;
+        movement = player.isMovementEnabled;
+        player.SetMovementEnabled (false);
         pauseMenu.SetActive (true);
         isPaused = true;
         Time.timeScale = 0;
     }
 
     public void Unpause () {
-        Cursor.lockState = clm;
-        pauseMenu.SetActive (false);
+        //Cursor.lockState = clm;
+        player.SetMovementEnabled (movement);
+        pauseMenu.SetActive (false);        
         isPaused = false;
         Time.timeScale = 1;
     }
@@ -43,11 +57,12 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Lose () {
-
+        curtains.SetColour (loseCurtainColour);
+        curtains.Close ();
     }
 
     public void NextLevel () {
-
+        SwitchScene (SceneManager.GetActiveScene ().buildIndex + 1);
     }
 
     public void RestartLevel () {
