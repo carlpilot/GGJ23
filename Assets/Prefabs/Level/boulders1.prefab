@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 5421483467724912837}
   - component: {fileID: 6700634813625787463}
   m_Layer: 0
-  m_Name: Boulders1
+  m_Name: boulders1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6590972570776535978
 Transform:
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2c490a74e9e48641bd178ddc585b003, type: 2}
+  - {fileID: 2100000, guid: fb9866de432a8766dad9ffd05181886f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,6 +95,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3226538266922311890, guid: baa1b24be495ef748a9b143d7026ff9d, type: 3}
