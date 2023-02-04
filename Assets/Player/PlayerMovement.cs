@@ -57,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     PlayerSlip currentSlip;
     public bool isTouchingWall {get;private set;}
     public bool isWallRunning {get;private set;}
+    public bool isTouchingHead {get;private set;}
 
     public bool isSliding {get;private set;}
 
@@ -93,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
         // Do environment checks
         UpdateGrounded();
         UpdateOnWall();
+        UpdateOnHead();
 
         // Calculate floor forward
         var normalRot = Quaternion.FromToRotation(Vector3.up, groundNormal);
@@ -126,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
                 if (enableSliding && !isSliding && blockSlideTimer <= 0 && Input.GetKey(KeyCode.LeftShift) && isGrounded && Vector3.Dot(floorForward, body.velocity) > slideSpeedThresholdMultiplier*maxSpeed){
                     SetSliding(true, floorForward);
                 }
-                if (isSliding && (!Input.GetKey(KeyCode.LeftShift) || Vector3.Dot(floorForward, body.velocity) < slideSpeedThresholdExitMultiplier)){
+                if (isSliding && !isTouchingHead && (!Input.GetKey(KeyCode.LeftShift) || Vector3.Dot(floorForward, body.velocity) < slideSpeedThresholdExitMultiplier)){
                     SetSliding(false);
                 }   
             } else{
@@ -239,6 +241,18 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = false;
         currentSlideBoost = null;
         currentSlip = null;
+    }
+
+    void UpdateOnHead(){
+        Collider[] hitColliders = Physics.OverlapSphere(transform.TransformPoint(Vector3.up), 0.5f);
+        foreach (var hitCollider in hitColliders){
+            // We dont want to pick up any player colliders as the ground
+            if (hitCollider.gameObject.layer != gameObject.layer){
+                isTouchingHead = true;
+                return;
+            }
+        }
+        isTouchingHead = false;
     }
 
     void UpdateOnWall(){
