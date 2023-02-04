@@ -62,11 +62,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4187596535973402518, guid: 8412ba841fd99a445a24516391cc9120,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.186
+      objectReference: {fileID: 0}
     - target: {fileID: 5388844598324437016, guid: 8412ba841fd99a445a24516391cc9120,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9e3637622ff217f23a41e1bf129be927, type: 2}
+    - target: {fileID: 5746229082952513339, guid: 8412ba841fd99a445a24516391cc9120,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7909743004805571116, guid: 8412ba841fd99a445a24516391cc9120,
         type: 3}
       propertyPath: m_Name
@@ -75,27 +85,52 @@ PrefabInstance:
     - target: {fileID: 8068858811494589565, guid: 8412ba841fd99a445a24516391cc9120,
         type: 3}
       propertyPath: m_Range
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8068858811494589565, guid: 8412ba841fd99a445a24516391cc9120,
         type: 3}
       propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8068858811494589565, guid: 8412ba841fd99a445a24516391cc9120,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.5799811
-      objectReference: {fileID: 0}
-    - target: {fileID: 8068858811494589565, guid: 8412ba841fd99a445a24516391cc9120,
-        type: 3}
-      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8068858811494589565, guid: 8412ba841fd99a445a24516391cc9120,
         type: 3}
+      propertyPath: m_Color.g
+      value: 0.54365414
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068858811494589565, guid: 8412ba841fd99a445a24516391cc9120,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068858811494589565, guid: 8412ba841fd99a445a24516391cc9120,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068858811494589565, guid: 8412ba841fd99a445a24516391cc9120,
+        type: 3}
       propertyPath: m_Intensity
-      value: 2.14
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068858811494589565, guid: 8412ba841fd99a445a24516391cc9120,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068858811494589565, guid: 8412ba841fd99a445a24516391cc9120,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068858811494589565, guid: 8412ba841fd99a445a24516391cc9120,
+        type: 3}
+      propertyPath: m_BounceIntensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8178958209843721193, guid: 8412ba841fd99a445a24516391cc9120,
+        type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8412ba841fd99a445a24516391cc9120, type: 3}
