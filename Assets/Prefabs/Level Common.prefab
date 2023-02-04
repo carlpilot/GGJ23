@@ -4747,7 +4747,7 @@ MonoBehaviour:
   loseWait: 1
   loseCurtainColour: {r: 0, g: 0, b: 0, a: 0.9019608}
   winCurtainColour: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 0.9019608}
-  startCurtainColour: {r: 0.54, g: 0.54, b: 0.54, a: 0.9019608}
+  startCurtainColour: {r: 0, g: 0, b: 0, a: 0.9019608}
 --- !u!114 &3943645563203622651
 MonoBehaviour:
   m_ObjectHideFlags: 0
