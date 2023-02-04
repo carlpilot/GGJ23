@@ -7,7 +7,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour {
 
-    [Header("Menus")]
+    [Header ("Menus")]
     public GameObject pauseMenu;
     public GameObject loseMenu;
     public GameObject winMenu;
@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour {
     PlayerMovement player;
     bool movement;
 
+    public bool winnable { get; private set; } = true;
+
+    Timer timer;
     Curtains curtains;
 
     public int level { get => SceneManager.GetActiveScene ().buildIndex; }
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour {
     private void Awake () {
         Time.timeScale = 1;
         player = FindObjectOfType<PlayerMovement> ();
+        timer = FindObjectOfType<Timer> ();
         curtains = FindObjectOfType<Curtains> ();
     }
 
@@ -44,6 +48,9 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Update () {
+        // start timer on WASD or space
+        if (!timer.isCounting && winnable && (Input.GetAxis ("Vertical") != 0 || Input.GetAxis ("Horizontal") != 0 || Input.GetKey (KeyCode.Space))) timer.StartTime ();
+
         if(Input.GetKeyDown(KeyCode.Escape)) {
             if (!isPaused) Pause (); else Unpause ();
         }
@@ -65,13 +72,21 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Win () {
-
+        if (!winnable) return;
+        winnable = false;
+        winMenu.SetActive (true);
+        PutGetHighScores (timer.time);
+        timer.StopTime ();
+        player.SetMovementEnabled (false);
     }
 
     public void Lose () {
+        winnable = false;
         loseMenu.SetActive (true);
         curtains.SetColour (loseCurtainColour);
         curtains.Close ();
+        timer.StopTime ();
+        player.SetMovementEnabled (false);
     }
 
     public void NextLevel () {
@@ -124,15 +139,20 @@ public class GameManager : MonoBehaviour {
         string[] scores = highscores.Split ('\n');
         string u = PlayerPrefs.GetString ("Username");
         rank.text = "#";
+        bestTime.text = "-";
         for (int i = 0; i < scores.Length; i++) {
             if (scores[i].Length < 2) continue;
             string[] vals = scores[i].Split ('|');
             GameObject newLBI = Instantiate (leaderboardItemPrefab);
             newLBI.transform.SetParent (leaderboardContainer, false);
             LeaderItem lbi = newLBI.GetComponent<LeaderItem> ();
-            //lbi.SetRank (i + 1); lbi.SetUsername (vals[0]); lbi.SetTime (int.Parse (vals[2]) / 1000.0f);
             lbi.Setup (i + 1, vals[0], int.Parse (vals[2]) / 1000.0f);
-            if (vals[0] == u) rank.text = (i + 1).ToString();
+            if (vals[0] == u) {
+                rank.text = (i + 1).ToString ();
+                bestTime.text = Timer.TimeFormat (int.Parse (vals[2]) / 1000.0f);
+            }
         }
+        usernameText.text = PlayerPrefs.GetString ("Username");
+        thisTime.text = Timer.TimeFormat (timer.time);
     }
 }
