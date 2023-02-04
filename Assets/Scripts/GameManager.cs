@@ -5,14 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    [Header("Menus")]
     public GameObject pauseMenu;
+    public GameObject loseMenu;
+
+    [Header ("Curtains")]
+    public Color loseCurtainColour;
+    public Color winCurtainColour;
+    public Color startCurtainColour;
+
     public bool isPaused { get; private set; }
-    CursorLockMode clm;
     PlayerMovement player;
     bool movement;
-
-    [Header ("Win/Lose")]
-    public Color loseCurtainColour;
 
     Curtains curtains;
 
@@ -24,7 +28,7 @@ public class GameManager : MonoBehaviour {
 
     private void Start () {
         curtains.SetPosition (curtains.closeAmount);
-        curtains.SetColour (loseCurtainColour);
+        curtains.SetColour (startCurtainColour);
         curtains.Open ();
     }
 
@@ -35,8 +39,6 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Pause () {
-        //clm = Cursor.lockState;
-        //Cursor.lockState = CursorLockMode.None;
         movement = player.isMovementEnabled;
         player.SetMovementEnabled (false);
         pauseMenu.SetActive (true);
@@ -45,7 +47,6 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Unpause () {
-        //Cursor.lockState = clm;
         player.SetMovementEnabled (movement);
         pauseMenu.SetActive (false);        
         isPaused = false;
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Lose () {
+        loseMenu.SetActive (true);
         curtains.SetColour (loseCurtainColour);
         curtains.Close ();
     }
