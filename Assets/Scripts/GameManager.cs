@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Pause () {
+        if (!winnable) return; // no pause if win or lose screen is up
         movement = player.isMovementEnabled;
         player.SetMovementEnabled (false);
         pauseMenu.SetActive (true);
