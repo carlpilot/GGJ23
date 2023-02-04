@@ -77,8 +77,11 @@ public class PlayerMovement : MonoBehaviour
     float blockWallRunTimer;
     float blockZiplineTimer;
     float blockAccelerationTimer;
+
+    GameManager gameManager;
     
     void Awake() {
+        gameManager = FindObjectOfType<GameManager> ();
         body = GetComponent<Rigidbody>();
         camTargetLocalPosition = headPosition.localPosition;
         Physics.queriesHitTriggers = false;
@@ -112,11 +115,13 @@ public class PlayerMovement : MonoBehaviour
         
         if (isMovementEnabled){
             // Check for mouse move
-            var rotX = Input.GetAxis("Mouse X") * sensitivity;
-            rotY -= Input.GetAxis("Mouse Y") * sensitivity;
-            rotY = Mathf.Clamp(rotY, -90, 90);
-            cam.transform.localRotation = Quaternion.Euler(rotY, 0, 0);
-            transform.Rotate(0, rotX, 0);
+            if (!gameManager.isPaused) {
+                var rotX = Input.GetAxis ("Mouse X") * sensitivity;
+                rotY -= Input.GetAxis ("Mouse Y") * sensitivity;
+                rotY = Mathf.Clamp (rotY, -90, 90);
+                cam.transform.localRotation = Quaternion.Euler (rotY, 0, 0);
+                transform.Rotate (0, rotX, 0);
+            }
 
             // Can't move on a zipline
             if (currentZipline == null){
