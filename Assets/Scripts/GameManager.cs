@@ -98,14 +98,16 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator WaitResetLevel () {
+        /*
         AsyncOperation a = SceneManager.LoadSceneAsync (level);
         a.allowSceneActivation = false;
+        */
         float startTime = Time.unscaledTime;
         while (Time.unscaledTime - startTime < loseWait) {
             yield return null;
         }
-        //RestartLevel ();
-        a.allowSceneActivation = true;
+        RestartLevel ();
+        //a.allowSceneActivation = true;
     }
 
     public void NextLevel () {
