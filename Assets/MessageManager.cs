@@ -14,6 +14,7 @@ public class MessageManager : MonoBehaviour
     public Animator hintAnimator;
 
     char[] remainingQuoteText;
+    string currentQuoteText;
 
     void Awake()
     {
@@ -33,16 +34,22 @@ public class MessageManager : MonoBehaviour
             if (remainingQuoteText.Length == 0){
                 quoteText.text = "";
             } else if (remainingQuoteText.Length == 1){
-                quoteText.text += remainingQuoteText[0];
+                currentQuoteText += remainingQuoteText[0];
+                quoteText.text = currentQuoteText;
                 remainingQuoteText = new char[0];
                 quoteTimer = 5f;
             } else{
-                quoteText.text += remainingQuoteText[0];
-                //remainingQuoteText = remainingQuoteText[1:];
+                currentQuoteText += remainingQuoteText[0];
                 var temp = new List<char>(remainingQuoteText);
                 temp.RemoveAt(0);
                 remainingQuoteText = temp.ToArray();
                 quoteTimer = 0.025f;
+                quoteText.text = currentQuoteText;
+                for (int i = 0; i < remainingQuoteText.Length; i++)
+                {
+                    quoteText.text += " ";
+                }
+                //quoteText.text += ".";
             }
         }
     }
@@ -69,6 +76,7 @@ public class MessageManager : MonoBehaviour
             ch[i] = msg[i];
         }
         remainingQuoteText = ch;
+        currentQuoteText = "";
         quoteTimer = -1;
     }
 
