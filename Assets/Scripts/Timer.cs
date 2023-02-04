@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
 
-    TMPro.TMP_Text timerText;
+    public TMPro.TMP_Text timerText;
 
     bool counting = false;
 
