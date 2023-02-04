@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     public TMP_Text thisTime;
     public TMP_Text bestTime;
     public TMP_Text rank;
+    public GameObject loadingScoresText;
 
     [Header ("Curtains")]
     public Color loseCurtainColour;
@@ -154,5 +155,6 @@ public class GameManager : MonoBehaviour {
         }
         usernameText.text = PlayerPrefs.GetString ("Username");
         thisTime.text = Timer.TimeFormat (timer.time);
+        loadingScoresText.SetActive (false);
     }
 }
