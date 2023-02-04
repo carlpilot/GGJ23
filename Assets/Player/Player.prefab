@@ -92,7 +92,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 123e1f43ea620a726970563dc698005f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -413,7 +413,7 @@ MonoBehaviour:
   maxSpeed: 10
   acceleration: 20
   enableWallRunning: 1
-  wallRunSpeedThresholdMultiplier: 0.7
+  wallRunSpeedThresholdMultiplier: 0.65
   wallStickAcceleration: 10
   airAccelerationMultiplier: 0.025
   enableSliding: 1
@@ -429,7 +429,7 @@ MonoBehaviour:
   footOffset: {x: 0, y: -0.64, z: 0}
   footRange: 0.4
   wallOffset: {x: 0, y: 0, z: 0}
-  wallRange: 0.7
+  wallRange: 0.75
   jumpDelay: 0.25
   jumpVelocity: 7
   cam: {fileID: 6186241977131882032}

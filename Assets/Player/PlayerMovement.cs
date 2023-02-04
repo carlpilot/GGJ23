@@ -181,13 +181,13 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
             } else{
-                if (currentZipline.IsOnZipline(transform.position) && !(Input.GetKey(KeyCode.E) && blockZiplineTimer < 0)){
+                if (currentZipline.IsOnZipline(transform.position) && !(!Input.GetKey(KeyCode.E) && blockZiplineTimer < 0)){
                     var corrective = currentZipline.GetOnZiplinePos(transform.position, -1.5f) - transform.position;
                     var speed = currentZipline.GetDirection() * currentZiplineDirection * ziplineSpeed;
                     body.velocity = speed + corrective*5f;
                 } else{
                     currentZipline = null;
-                    blockZiplineTimer = 0.5f;
+                    blockZiplineTimer = 0.2f;
                 }
             }
         }
