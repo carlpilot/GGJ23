@@ -2,12 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour {
 
     [Header("Menus")]
     public GameObject pauseMenu;
     public GameObject loseMenu;
+    public GameObject winMenu;
+    public Transform leaderboardContainer;
+    public GameObject leaderboardItemPrefab;
+    public TMP_Text usernameText;
+    public TMP_Text thisTime;
+    public TMP_Text bestTime;
+    public TMP_Text rank;
 
     [Header ("Curtains")]
     public Color loseCurtainColour;
