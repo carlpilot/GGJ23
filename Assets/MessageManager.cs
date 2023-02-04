@@ -19,6 +19,7 @@ public class MessageManager : MonoBehaviour
     void Awake()
     {
         m = this;
+        remainingQuoteText = new char[0];
     }
     
     void Update()
