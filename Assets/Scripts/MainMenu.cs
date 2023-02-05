@@ -18,7 +18,6 @@ public class MainMenu : MonoBehaviour {
     public Sprite[] levelSprites;
 
     private void Start () {
-        PlayerPrefs.DeleteKey ("Username");
         if (PlayerPrefs.HasKey ("Username") && isUsernameValid) {
             string existingUsername = PlayerPrefs.GetString ("Username");
             usernameConfirm.text = "Hello, " + existingUsername + "!";
