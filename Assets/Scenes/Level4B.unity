@@ -14673,6 +14673,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2550066545559802914, guid: e7a08d387a3d12e4da0a5a18e2d8cd3f,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550066545559802914, guid: e7a08d387a3d12e4da0a5a18e2d8cd3f,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 3000
+      objectReference: {fileID: 0}
     - target: {fileID: 3468986722043755165, guid: e7a08d387a3d12e4da0a5a18e2d8cd3f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14686,7 +14696,7 @@ PrefabInstance:
     - target: {fileID: 3468986722043755165, guid: e7a08d387a3d12e4da0a5a18e2d8cd3f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.63
+      value: -26.86
       objectReference: {fileID: 0}
     - target: {fileID: 3468986722043755165, guid: e7a08d387a3d12e4da0a5a18e2d8cd3f,
         type: 3}
@@ -14830,6 +14840,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898401906900343592, guid: e7a08d387a3d12e4da0a5a18e2d8cd3f,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898401906900343592, guid: e7a08d387a3d12e4da0a5a18e2d8cd3f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898401906900343592, guid: e7a08d387a3d12e4da0a5a18e2d8cd3f,
+        type: 3}
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
@@ -14846,7 +14866,7 @@ PrefabInstance:
     - target: {fileID: 7898401906900343592, guid: e7a08d387a3d12e4da0a5a18e2d8cd3f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30.97
+      value: -41.44
       objectReference: {fileID: 0}
     - target: {fileID: 7898401906900343592, guid: e7a08d387a3d12e4da0a5a18e2d8cd3f,
         type: 3}
