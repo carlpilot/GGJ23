@@ -1761,68 +1761,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 316363817}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &342032014
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 342032015}
-  - component: {fileID: 342032017}
-  - component: {fileID: 342032016}
-  m_Layer: 0
-  m_Name: ExitZipClear
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &342032015
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342032014}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.57, y: -3.13, z: -54.17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1799682191}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &342032016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342032014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 435daf401db738968819311bdb9d8216, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clear: 1
-  msg: 
-  timeout: 10
-  isHint: 1
---- !u!135 &342032017
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342032014}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 4.24
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &345737718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,68 +2044,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 356334108}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &363178713
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 363178714}
-  - component: {fileID: 363178716}
-  - component: {fileID: 363178715}
-  m_Layer: 0
-  m_Name: ExitZip
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &363178714
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 363178713}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.2, y: 2.98, z: -43.12}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1799682191}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &363178715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 363178713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 435daf401db738968819311bdb9d8216, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clear: 0
-  msg: You can exit a zipline early with 'e'
-  timeout: 10
-  isHint: 1
---- !u!135 &363178716
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 363178713}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 4.24
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &376873745
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3894,8 +3770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clear: 0
-  msg: Press 'e' when near to a zipline to travel along it in the direction you are
-    facing
+  msg: Hold 'e' to stay on a zipline. You can get on a zipline when it is green!
   timeout: 10
   isHint: 1
 --- !u!135 &741799895
@@ -10204,8 +10079,6 @@ Transform:
   - {fileID: 792600006}
   - {fileID: 355637683}
   - {fileID: 188274006}
-  - {fileID: 363178714}
-  - {fileID: 342032015}
   m_Father: {fileID: 591948956}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
