@@ -9079,7 +9079,7 @@ GameObject:
   - component: {fileID: 1405017412}
   - component: {fileID: 1405017414}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9153,7 +9153,7 @@ MonoBehaviour:
 
     - Daniel Battersby
 
-    - James
+    - James Harcourt
 
 
     Sound
@@ -9292,7 +9292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb47051349d0487ea57785d4ee39c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.05
+  speed: 0.1
   cutoff: 700
 --- !u!1 &1426852020
 GameObject:
