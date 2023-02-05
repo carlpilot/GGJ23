@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class KillTrigger : MonoBehaviour
 {
-
     GameManager gm;
 
     private void Awake () {
