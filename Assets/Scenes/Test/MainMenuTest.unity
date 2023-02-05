@@ -1511,6 +1511,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usernameInput: {fileID: 1199450671}
   usernameConfirm: {fileID: 1456220525}
+  buttonsToDisableWithoutUsername:
+  - {fileID: 1649364989}
+  - {fileID: 761908082}
+  - {fileID: 1540758293}
 --- !u!1 &1456220523
 GameObject:
   m_ObjectHideFlags: 0
