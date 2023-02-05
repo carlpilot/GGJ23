@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
 
     [Header ("Win / Lose Logic")]
     public float loseWait = 2.0f;
+    public GameObject winButton;
 
     [Header ("Curtains")]
     public Color loseCurtainColour;
@@ -80,6 +81,7 @@ public class GameManager : MonoBehaviour {
         if (!winnable) return;
         winnable = false;
         winMenu.SetActive (true);
+        if (level == SceneManager.sceneCountInBuildSettings - 1) winButton.SetActive (false); // disable next button on last level
         curtains.SetColour (winCurtainColour);
         curtains.Close ();
         PutGetHighScores (timer.time);
