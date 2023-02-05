@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clear: 0
-  msg: Oh no, another cave! I guess i'll have to keep exploring to find the way out.
+  msg: Damn another cave. No choice but to keep going I guess!
   timeout: 10
   isHint: 0
 --- !u!135 &109802854
@@ -8494,6 +8494,69 @@ Transform:
   m_Father: {fileID: 345737719}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1548235476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1548235477}
+  - component: {fileID: 1548235479}
+  - component: {fileID: 1548235478}
+  m_Layer: 0
+  m_Name: Ziplines (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1548235477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548235476}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16.721, y: 6.939, z: 24.535}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1950439143}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1548235478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548235476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435daf401db738968819311bdb9d8216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clear: 0
+  msg: Look at the size of these roots. I wonder if those crystals have anything
+    to do with it?
+  timeout: 10
+  isHint: 0
+--- !u!135 &1548235479
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548235476}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4.24
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1630438400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8693,7 +8756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clear: 0
-  msg: That was tough but I made it. I hope the way out is near!
+  msg: That was tough but I made it. I hope the way out is close!
   timeout: 10
   isHint: 0
 --- !u!135 &1642109521
@@ -11388,6 +11451,7 @@ Transform:
   - {fileID: 109802852}
   - {fileID: 2087547424}
   - {fileID: 1642109519}
+  - {fileID: 1548235477}
   m_Father: {fileID: 591948956}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
