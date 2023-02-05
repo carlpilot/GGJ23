@@ -10,12 +10,31 @@ public class MainMenu : MonoBehaviour {
     public TMP_Text usernameConfirm;
 
     private void Start () {
-        usernameConfirm.text = "Your username is " + PlayerPrefs.GetString ("Username");
+        if (PlayerPrefs.HasKey ("Username")) {
+            string existingUsername = PlayerPrefs.GetString ("Username");
+            usernameConfirm.text = "Hello, " + existingUsername + "!";
+            usernameInput.text = existingUsername;
+        }
+        usernameInput.characterValidation = TMP_InputField.CharacterValidation.Alphanumeric;
     }
 
     public void SaveUsername () {
-        PlayerPrefs.SetString ("Username", usernameInput.text);
-        usernameConfirm.text = "Your username is " + PlayerPrefs.GetString ("Username");
+        string username = usernameInput.text;
+        if (ValidateUsername (username) == "") {
+            usernameInput.textComponent.color = Color.black;
+            PlayerPrefs.SetString ("Username", username);
+            usernameConfirm.text = "Hello,  " + PlayerPrefs.GetString ("Username") + "!";
+        } else {
+            usernameConfirm.text = ValidateUsername (username);
+            usernameInput.textComponent.color = Color.red;
+        }
+    }
+
+    public string ValidateUsername (string username) {
+        //return username.Length >= 3 && username.Length <= 16;
+        if (username.Length < 3) return "Your username must be at least 3 characters";
+        if (username.Length > 16) return "Your username must be at most 16 characters";
+        return "";
     }
 
     public void SwitchScene (int scene) {
