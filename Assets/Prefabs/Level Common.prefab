@@ -9681,7 +9681,7 @@ MonoBehaviour:
   rank: {fileID: 167815342}
   loadingScoresText: {fileID: 2069092141786483421}
   loseWait: 1
-  winButton: {fileID: 1227855430}
+  winButton: {fileID: 0}
   loseCurtainColour: {r: 0, g: 0, b: 0, a: 0.9019608}
   winCurtainColour: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 0.9019608}
   startCurtainColour: {r: 0, g: 0, b: 0, a: 0.9019608}
@@ -10577,3 +10577,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4402800280986587755}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7548052535480639199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6186241977415978164, guid: ee15e149edfbd664eb3ef251c109c974,
+    type: 3}
+  m_PrefabInstance: {fileID: 4402800280986587755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1377401678787503702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7548052535480639199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f979cd8d3afae46a9dd11448709871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  lastSpeed: 0
+  currentFOV: 0
+  targetFOV: 0
+  baseFov: 70
+  fastFov: 100
+  acceleration: 10
+  deceleration: 30
+  transitionRate: 0
+  threshold: 7
