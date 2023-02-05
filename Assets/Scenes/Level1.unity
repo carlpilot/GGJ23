@@ -1593,8 +1593,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clear: 0
-  msg: Some obstacles are too low to walk under. Whilst running, hold Left shit to
-    slide
+  msg: Some obstacles are too low to walk under. Whilst running, hold Left Shift
+    to slide
   timeout: 10
   isHint: 1
 --- !u!135 &207738686
