@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour {
         PutGetHighScores (timer.time);
         timer.StopTime ();
         player.SetMovementEnabled (false);
+        if (PlayerPrefs.GetInt ("LastLevelCompleted") < level) PlayerPrefs.SetInt ("LastLevelCompleted", level); // progress to next level if we haven't already
     }
 
     public void Lose () {

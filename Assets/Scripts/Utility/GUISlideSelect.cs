@@ -8,6 +8,7 @@ public class GUISlideSelect : MonoBehaviour
     public GameObject clickThroughBlocker;
 
     public Vector3[] cameraPositions;
+    public Vector3[] cameraRotations;
 
     public float speed = 1f;
 
@@ -52,7 +53,9 @@ public class GUISlideSelect : MonoBehaviour
             distTravelled += Mathf.Abs (d);
             yield return new WaitForEndOfFrame ();
 
-            Camera.main.transform.position = Vector3.Lerp (cameraPositions[originSlide], cameraPositions[CurrentSlide], cameraTransitionCurve.Evaluate (distTravelled / slideDist));
+            float cameraInterp = cameraTransitionCurve.Evaluate (distTravelled / slideDist);
+            Camera.main.transform.position = Vector3.Lerp (cameraPositions[originSlide], cameraPositions[CurrentSlide], cameraInterp);
+            Camera.main.transform.rotation = Quaternion.Slerp (Quaternion.Euler (cameraRotations[originSlide]), Quaternion.Euler (cameraRotations[CurrentSlide]), cameraInterp);
         }
 
         // lock final positions (eliminates frame gaps)
