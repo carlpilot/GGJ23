@@ -22,7 +22,7 @@ public class MainMenu : MonoBehaviour {
         if (PlayerPrefs.HasKey ("Username") && isUsernameValid) {
             string existingUsername = PlayerPrefs.GetString ("Username");
             usernameConfirm.text = "Hello, " + existingUsername + "!";
-            usernameInput.textComponent.color = Color.black;
+            usernameInput.textComponent.color = Color.white;
             usernameInput.text = existingUsername;
         } else {
             usernameInput.textComponent.color = Color.red;
@@ -50,7 +50,7 @@ public class MainMenu : MonoBehaviour {
     public void SaveUsername () {
         string username = usernameInput.text;
         if (ValidateUsername (username) == "") {
-            usernameInput.textComponent.color = Color.black;
+            usernameInput.textComponent.color = Color.white;
             PlayerPrefs.SetString ("Username", username);
             usernameConfirm.text = "Hello,  " + PlayerPrefs.GetString ("Username") + "!";
         } else {
@@ -69,7 +69,7 @@ public class MainMenu : MonoBehaviour {
     public bool isUsernameValid { get => ValidateUsername (PlayerPrefs.GetString ("Username")) == ""; }
     public bool isEnteredUsernameValid { get => ValidateUsername (usernameInput.text) == ""; }
 
-    public void SwitchScene (int scene) {
-        SceneManager.LoadScene (scene);
-    }
+    public void SwitchScene (int scene) => SceneManager.LoadScene (scene);
+
+    public void Quit () => Application.Quit ();
 }

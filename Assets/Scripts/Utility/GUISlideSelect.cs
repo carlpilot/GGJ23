@@ -23,7 +23,8 @@ public class GUISlideSelect : MonoBehaviour
     private void Start () {
         // Scale screens to Screen
         for(int i = 1; i < slides.Length; i++) {
-            slides[i].SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, Screen.width);
+            //slides[i].SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, Screen.width);
+            slides[i].SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, slides[0].rect.width);
         }
     }
 
