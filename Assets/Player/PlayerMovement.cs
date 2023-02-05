@@ -151,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
                 runSound.Stop();
                 wallRunSound.Stop();
                 slideSound.Stop();
-            }  else if (isSliding) {
+            }  else if (isSliding && isGrounded) {
                 if (!slideSound.isPlaying) slideSound.Play();
                 runSound.Stop();
                 wallRunSound.Stop();
