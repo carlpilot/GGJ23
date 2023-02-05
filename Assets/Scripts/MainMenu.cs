@@ -41,7 +41,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     void LoadLevels () {
-        for(int i = 1; i < SceneManager.sceneCountInBuildSettings; i++) {
+        for(int i = 1; i < SceneManager.sceneCountInBuildSettings - 1; i++) {
             GameObject g = Instantiate (levelSelectPrefab, levelScrollView);
             g.GetComponent<LevelSelectPrefab> ().Setup (i, levelSprites[i - 1]);
         }

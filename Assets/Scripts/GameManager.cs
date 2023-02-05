@@ -123,10 +123,6 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene (scene);
     }
 
-    public void GetHighScores () {
-        StartCoroutine (GetHSHelper ("http://dreamlo.com/lb/" + SecretCode.Public (level) + "/pipe-seconds-asc"));
-    }
-
     public void PutGetHighScores (float time) {
         int timeMS = Mathf.FloorToInt (time * 1000);
         int score = 10000000 - timeMS; // lower time = higher score
