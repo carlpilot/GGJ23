@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour {
     public Sprite[] levelSprites;
 
     private void Start () {
+        Time.timeScale = 1;
         if (PlayerPrefs.HasKey ("Username") && isUsernameValid) {
             string existingUsername = PlayerPrefs.GetString ("Username");
             usernameConfirm.text = "Hello, " + existingUsername + "!";
@@ -40,7 +41,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     void LoadLevels () {
-        for(int i = 1; i < SceneManager.sceneCountInBuildSettings - 1; i++) {
+        for(int i = 1; i < SceneManager.sceneCountInBuildSettings; i++) {
             GameObject g = Instantiate (levelSelectPrefab, levelScrollView);
             g.GetComponent<LevelSelectPrefab> ().Setup (i, levelSprites[i - 1]);
         }
