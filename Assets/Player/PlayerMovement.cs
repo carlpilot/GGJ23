@@ -49,6 +49,12 @@ public class PlayerMovement : MonoBehaviour
     public Transform headPosition;
     public Transform slidingHeadPosition;
 
+    [Header("Sound")]
+    public AudioSource runSound;
+    public AudioSource wallRunSound;
+    public AudioSource slideSound;
+    public AudioSource zipSound;
+
     // Header - State
     public bool isMovementEnabled {get;private set;}
 
@@ -139,6 +145,32 @@ public class PlayerMovement : MonoBehaviour
             } else{
                 inputVector = Vector3.zero;
                 SetSliding(false);
+            }
+            if (currentZipline) {
+                if (!zipSound.isPlaying) zipSound.Play();
+                runSound.Stop();
+                wallRunSound.Stop();
+                slideSound.Stop();
+            }  else if (isSliding) {
+                if (!slideSound.isPlaying) slideSound.Play();
+                runSound.Stop();
+                wallRunSound.Stop();
+                zipSound.Stop();
+            }  else if (isWallRunning) {
+                if (!wallRunSound.isPlaying) wallRunSound.Play();
+                runSound.Stop();
+                slideSound.Stop();
+                zipSound.Stop();
+            } else if (inputVector.magnitude > 0 && isGrounded){
+                if (!runSound.isPlaying) runSound.Play();
+                wallRunSound.Stop();
+                slideSound.Stop();
+                zipSound.Stop();
+            } else {
+                runSound.Stop();
+                wallRunSound.Stop();
+                slideSound.Stop();
+                zipSound.Stop();
             }
         } else{
             inputVector = Vector3.zero;

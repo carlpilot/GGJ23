@@ -5984,7 +5984,7 @@ PrefabInstance:
     - target: {fileID: -2365944225425351726, guid: f06093d049919664680c830736d3e792,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8458950629887041817, guid: f06093d049919664680c830736d3e792,
         type: 3}
@@ -7519,6 +7519,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7588212170734282632, guid: c3564a6f34fd991478187b342dea6bc2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7172926515129594484, guid: c3564a6f34fd991478187b342dea6bc2,
         type: 3}
       propertyPath: m_Name
@@ -8675,6 +8680,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Root1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7650666546173771680, guid: ac2019dd543129748ae56fbb93f8c66e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7901030965283887221, guid: ac2019dd543129748ae56fbb93f8c66e,
         type: 3}
       propertyPath: m_RootOrder
@@ -8897,6 +8907,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ruin1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969801605829660281, guid: 2aa04c0d9c38caa4a8f7cb4c7bc09e9d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2aa04c0d9c38caa4a8f7cb4c7bc09e9d, type: 3}
