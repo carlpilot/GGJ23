@@ -20,6 +20,13 @@ public class GUISlideSelect : MonoBehaviour
     public int CurrentSlide { get; private set; } = 0;
     public float slideDist { get => Screen.width; }
 
+    private void Start () {
+        // Scale screens to Screen
+        for(int i = 1; i < slides.Length; i++) {
+            slides[i].SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, Screen.width);
+        }
+    }
+
     public void Transition (int slide) {
         originSlide = CurrentSlide;
         CurrentSlide = slide;
