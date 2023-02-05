@@ -1233,6 +1233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f427d68e62972149cceab92fd6c54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalDirecion: {x: 0, y: 1, z: 0}
 --- !u!65 &208180400
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4442,6 +4443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f427d68e62972149cceab92fd6c54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalDirecion: {x: 0, y: 1, z: 0}
 --- !u!65 &620267808
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6696,6 +6698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f427d68e62972149cceab92fd6c54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalDirecion: {x: 0, y: 1, z: 0}
 --- !u!65 &937737998
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10201,6 +10204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f427d68e62972149cceab92fd6c54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalDirecion: {x: 0, y: 1, z: 0}
 --- !u!65 &1520333641
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11254,6 +11258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f427d68e62972149cceab92fd6c54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalDirecion: {x: 0, y: 1, z: 0}
 --- !u!65 &1703313941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13547,6 +13552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f427d68e62972149cceab92fd6c54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalDirecion: {x: 0, y: 1, z: 0}
 --- !u!65 &1949829278
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14740,6 +14746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f427d68e62972149cceab92fd6c54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalDirecion: {x: 0, y: 1, z: 0}
 --- !u!65 &2074529383
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15157,6 +15164,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094f447cb588ab245ba6e5cc265f2df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2103774203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103774194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f979cd8d3afae46a9dd11448709871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  lastSpeed: 0
+  currentFOV: 70
+  targetFOV: 70
+  baseFov: 70
+  fastFov: 120
+  acceleration: 40
+  deceleration: 150
+  transitionRate: 150
+  threshold: 7
 --- !u!1 &2108086791 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7071fe99cea6b17808a30ee7f936e618,
@@ -15443,6 +15472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f427d68e62972149cceab92fd6c54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalDirecion: {x: 0, y: 1, z: 0}
 --- !u!65 &2129911366
 BoxCollider:
   m_ObjectHideFlags: 0
