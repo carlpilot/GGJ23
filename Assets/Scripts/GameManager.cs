@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour {
         PutGetHighScores (timer.time);
         timer.StopTime ();
         player.SetMovementEnabled (false);
+        if (PlayerPrefs.GetInt ("LastLevelCompleted") < level) PlayerPrefs.SetInt ("LastLevelCompleted", level); // progress to next level if we haven't already
     }
 
     public void Lose () {
@@ -120,10 +121,6 @@ public class GameManager : MonoBehaviour {
 
     public void SwitchScene (int scene) {
         SceneManager.LoadScene (scene);
-    }
-
-    public void GetHighScores () {
-        StartCoroutine (GetHSHelper ("http://dreamlo.com/lb/" + SecretCode.Public (level) + "/pipe-seconds-asc"));
     }
 
     public void PutGetHighScores (float time) {

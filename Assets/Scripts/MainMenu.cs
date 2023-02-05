@@ -7,12 +7,17 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour {
 
+    [Header("Username")]
     public TMP_InputField usernameInput;
     public TMP_Text usernameConfirm;
     public Button[] buttonsToDisableWithoutUsername;
 
+    [Header("Level Select")]
+    public GameObject levelSelectPrefab;
+    public Transform levelScrollView;
+    public Sprite[] levelSprites;
+
     private void Start () {
-        PlayerPrefs.DeleteKey ("Username");
         if (PlayerPrefs.HasKey ("Username") && isUsernameValid) {
             string existingUsername = PlayerPrefs.GetString ("Username");
             usernameConfirm.text = "Hello, " + existingUsername + "!";
@@ -23,12 +28,21 @@ public class MainMenu : MonoBehaviour {
             usernameConfirm.text = "Please enter a username";
         }
         usernameInput.characterValidation = TMP_InputField.CharacterValidation.Alphanumeric;
+
+        LoadLevels ();
     }
 
     private void Update () {
         bool valid = isEnteredUsernameValid;
         foreach (Button b in buttonsToDisableWithoutUsername) {
             b.interactable = valid;
+        }
+    }
+
+    void LoadLevels () {
+        for(int i = 1; i < SceneManager.sceneCountInBuildSettings - 1; i++) {
+            GameObject g = Instantiate (levelSelectPrefab, levelScrollView);
+            g.GetComponent<LevelSelectPrefab> ().Setup (i, levelSprites[i - 1]);
         }
     }
 
