@@ -16,6 +16,7 @@ public class Bouncer : MonoBehaviour
         if (bounceTimer <= 0){
             col.GetComponentInParent<PlayerMovement>().ReflectVelocity(transform.TransformDirection(normalDirecion));
             bounceTimer = 0.5f;
+            GetComponent<AudioSource>().Play();
         }
     }
 }

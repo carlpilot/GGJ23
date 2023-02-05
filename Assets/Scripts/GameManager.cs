@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour {
         // start timer on WASD or space
         if (!timer.isCounting && winnable && (Input.GetAxis ("Vertical") != 0 || Input.GetAxis ("Horizontal") != 0 || Input.GetKey (KeyCode.Space))) timer.StartTime ();
 
-        if(Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown (KeyCode.Escape)) {
             if (!isPaused) Pause (); else Unpause ();
         }
     }
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour {
 
     public void Unpause () {
         player.SetMovementEnabled (movement);
-        pauseMenu.SetActive (false);        
+        pauseMenu.SetActive (false);
         isPaused = false;
         Time.timeScale = 1;
     }
@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour {
         PutGetHighScores (timer.time);
         timer.StopTime ();
         player.SetMovementEnabled (false);
+        if (PlayerPrefs.GetInt ("LastLevelCompleted") < level) PlayerPrefs.SetInt ("LastLevelCompleted", level); // progress to next level if we haven't already
     }
 
     public void Lose () {
@@ -129,7 +130,7 @@ public class GameManager : MonoBehaviour {
     public void PutGetHighScores (float time) {
         int timeMS = Mathf.FloorToInt (time * 1000);
         int score = 10000000 - timeMS; // lower time = higher score
-        StartCoroutine (GetHSHelper ("http://dreamlo.com/lb/" + SecretCode.Private (level) + "/add-pipe-seconds-asc/" + PlayerPrefs.GetString ("Username") + "/" + score + "/" + timeMS));
+        StartCoroutine (GetHSHelper ("http://dreamlo.com/lb/" + SecretCode.Private (level) + "/add-pipe-seconds-asc/" + PlayerPrefs.GetString ("Username").ToUpper () + "/" + score + "/" + timeMS + "/" + PlayerPrefs.GetString ("Username")));
     }
 
     IEnumerator GetHSHelper (string uri) {
@@ -158,7 +159,7 @@ public class GameManager : MonoBehaviour {
 
     public void LoadLeaderboard (string highscores) {
         string[] scores = highscores.Split ('\n');
-        string u = PlayerPrefs.GetString ("Username");
+        string username = PlayerPrefs.GetString ("Username");
         rank.text = "#";
         bestTime.text = "-";
         for (int i = 0; i < scores.Length; i++) {
@@ -167,13 +168,14 @@ public class GameManager : MonoBehaviour {
             GameObject newLBI = Instantiate (leaderboardItemPrefab);
             newLBI.transform.SetParent (leaderboardContainer, false);
             LeaderItem lbi = newLBI.GetComponent<LeaderItem> ();
-            lbi.Setup (i + 1, vals[0], int.Parse (vals[2]) / 1000.0f);
-            if (vals[0] == u) {
+            string casedUsername = vals[3] != "" ? vals[3] : vals[0]; // use cased username if present
+            lbi.Setup (i + 1, casedUsername, int.Parse (vals[2]) / 1000.0f);
+            if (vals[0].ToUpper () == username.ToUpper ()) {
                 rank.text = (i + 1).ToString ();
                 bestTime.text = Timer.TimeFormat (int.Parse (vals[2]) / 1000.0f);
             }
         }
-        usernameText.text = PlayerPrefs.GetString ("Username");
+        usernameText.text = username;
         thisTime.text = Timer.TimeFormat (timer.time);
         loadingScoresText.SetActive (false);
     }
