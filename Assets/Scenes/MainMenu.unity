@@ -2771,8 +2771,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
+    m_Left: 10
+    m_Right: 10
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
@@ -5108,7 +5108,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: -60
   m_Viewport: {fileID: 1145180909}
   m_HorizontalScrollbar: {fileID: 1096154316}
   m_VerticalScrollbar: {fileID: 0}
@@ -7475,7 +7475,6 @@ Transform:
   - {fileID: 71106281}
   - {fileID: 1734971596}
   - {fileID: 2024534406}
-  - {fileID: 1426852021}
   m_Father: {fileID: 1896855278}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9319,13 +9318,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426852020}
-  m_LocalRotation: {x: -0, y: 0.19339031, z: -0, w: 0.9811219}
-  m_LocalPosition: {x: 30.072, y: 7.533, z: -23.508}
+  m_LocalRotation: {x: 0.6931584, y: -0.05360982, z: -0.15915401, w: 0.7009475}
+  m_LocalPosition: {x: -0.81086665, y: -0.3342371, z: 2.0022037}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1148333532}
-  m_RootOrder: 5
+  m_Father: {fileID: 2093803086}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 22.301, z: 0}
 --- !u!114 &1426852022
 MonoBehaviour:
@@ -13265,6 +13264,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074428305}
   m_CullTransparentMesh: 1
+--- !u!4 &2093803086 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5463398005702062256, guid: 9b2e812797cb8f2439596ddd65b93fdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 268586431}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2118615539
 PrefabInstance:
   m_ObjectHideFlags: 0
