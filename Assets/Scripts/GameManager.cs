@@ -84,8 +84,11 @@ public class GameManager : MonoBehaviour {
         if (level == SceneManager.sceneCountInBuildSettings - 1) winButton.SetActive (false); // disable next button on last level
         curtains.SetColour (winCurtainColour);
         curtains.Close ();
-        PutGetHighScores (timer.time);
         timer.StopTime ();
+        thisTime.text = Timer.TimeFormat (timer.time);
+        string username = PlayerPrefs.GetString ("Username");
+        usernameText.text = username;
+        if (username.Length > 0) PutGetHighScores (timer.time);
         player.SetMovementEnabled (false);
         if (PlayerPrefs.GetInt ("LastLevelCompleted") < level) PlayerPrefs.SetInt ("LastLevelCompleted", level); // progress to next level if we haven't already
     }
@@ -101,16 +104,11 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator WaitResetLevel () {
-        /*
-        AsyncOperation a = SceneManager.LoadSceneAsync (level);
-        a.allowSceneActivation = false;
-        */
         float startTime = Time.unscaledTime;
         while (Time.unscaledTime - startTime < loseWait) {
             yield return null;
         }
         RestartLevel ();
-        //a.allowSceneActivation = true;
     }
 
     public void NextLevel () {
@@ -134,6 +132,7 @@ public class GameManager : MonoBehaviour {
     IEnumerator GetHSHelper (string uri) {
         using (UnityWebRequest webRequest = UnityWebRequest.Get (uri)) {
             // Request and wait for the desired page.
+            webRequest.timeout = 5;
             yield return webRequest.SendWebRequest ();
 
             string[] pages = uri.Split ('/');
@@ -141,6 +140,8 @@ public class GameManager : MonoBehaviour {
 
             switch (webRequest.result) {
                 case UnityWebRequest.Result.ConnectionError:
+                    loadingScoresText.GetComponent<TMP_Text> ().text = "Cannot load scores\nCheck your connection";
+                    break;
                 case UnityWebRequest.Result.DataProcessingError:
                     Debug.LogError (pages[page] + ": Error: " + webRequest.error);
                     break;
@@ -173,8 +174,6 @@ public class GameManager : MonoBehaviour {
                 bestTime.text = Timer.TimeFormat (int.Parse (vals[2]) / 1000.0f);
             }
         }
-        usernameText.text = username;
-        thisTime.text = Timer.TimeFormat (timer.time);
         loadingScoresText.SetActive (false);
     }
 }
