@@ -1,2 +1,2 @@
 1.0
-There's a new version of <b><i>Re-root-ing</i></b> available!
+{User}There's a new version of <b><i>Re-root-ing</i></b> available!
