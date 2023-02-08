@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour {
     private void Update () {
         bool valid = isEnteredUsernameValid;
         foreach (Button b in buttonsToDisableWithoutUsername) {
-            b.interactable = valid;
+            b.interactable = valid && !GetComponent<VersionChecker>().isPromptOpen;
         }
     }
 

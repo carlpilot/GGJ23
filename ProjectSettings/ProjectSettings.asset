@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: The Weakest Links
   productName: Re-root-ing
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -32,7 +32,7 @@ PlayerSettings:
     x: 0
     y: 0
     width: 1
-    height: 1
+    height: 0.99999994
   m_SplashScreenBackgroundPortraitUvs:
     serializedVersion: 2
     x: 0
@@ -136,7 +136,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1.0
+  bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -158,7 +158,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.UnityTechnologies.com.unity.template.urpblank
-    Standalone: com.UnityTechnologies.com.unity.template.urp-blank
+    Standalone: com.The-Weakest-Links.Re-root-ing
     iPhone: com.Unity-Technologies.com.unity.template.urp-blank
   buildNumber:
     Standalone: 0
