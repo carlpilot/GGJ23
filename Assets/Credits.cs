@@ -3,25 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Credits : MonoBehaviour
-{
-    public float speed = 0.002f;
-    public float cutoff = 4000;
+public class Credits : MonoBehaviour {
+
+    public float speed = 0.2f;
+    public float cutoff = 2300;
     private bool started = false;
 
+    GUISlideSelect gss;
+    Vector3 startPosition;
+
+    private void Awake () {
+        gss = FindObjectOfType<GUISlideSelect> ();
+        startPosition = transform.position;
+    }
 
     void Update () {
-        
         if (started) {
-            transform.Translate(0, speed, 0);
-            
-            if(transform.position.y >= cutoff){
-                SceneManager.LoadScene (0);
-            }
+            transform.Translate (0, speed * Time.unscaledDeltaTime * Screen.height, 0);
+            if (transform.position.y >= cutoff / 1920.0f * Screen.height) BackToMenu ();
         }
     }
 
-    public void BackToMenu () => SceneManager.LoadScene (0);
+    public void BackToMenu () {
+        gss.Transition (0);
+    }
 
-    public void start () => started = true;
+    public void StartCredits () {
+        transform.position = startPosition;
+        started = true;
+    }
 }

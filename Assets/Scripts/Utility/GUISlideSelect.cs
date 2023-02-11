@@ -18,7 +18,7 @@ public class GUISlideSelect : MonoBehaviour
     int originSlide = 0;
 
     public int CurrentSlide { get; private set; } = 0;
-    public float slideDist { get => slides[0].rect.width; }// Screen.width; }
+    public float slideDist { get => slides[0].rect.width; }
 
     private void Start () {
         
@@ -52,7 +52,7 @@ public class GUISlideSelect : MonoBehaviour
             startPositions[i] = slides[i].anchoredPosition;
         }
 
-        Debug.Log ("Transitioning");
+        Debug.Log ("Transitioning to " + CurrentSlide);
 
         // animate
         while (distTravelled < slideDist) {
