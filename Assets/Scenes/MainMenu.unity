@@ -9877,60 +9877,68 @@ MonoBehaviour:
     - Niall Morrison
 
 
-    Assets:
+    2D
+    + 3D Art:
 
-    -
-    Josh Pattman
+    - Josh Pattman
 
     - Carl Bertolino
 
 
     Level Design:
 
-    - Josh Pattman
+    -
+    Josh Pattman
+
+    - Carl Bertolino
+
+    - Niall Morrison
+
+    - Daniel Battersby
 
     -
-    Carl Bertolino
-
-    - Niall Morrison
-
-    - Daniel Battersby
-
-    - James Harcourt
+    James Harcourt
 
 
-    Sound
-    Effects:
+    Sound Effects:
 
     - Daniel Battersby
 
     - James Harcourt
 
-    - Niall Morrison
+    -
+    Niall Morrison
 
 
-    Grade
-    8 Kazoo:
+    Grade 8 Kazoo:
 
     - Daniel Battersby
 
     - James Harcourt
 
-    - Josh Pattman
+    -
+    Josh Pattman
 
 
     Choreography:
 
-    -
-    Daniel Battersby
+    - Daniel Battersby
 
     - James Harcourt
 
 
-    Speedrun Strategist:
+    Player
+    Controls:
 
-    - Daniel
-    Battersby
+    - Josh Pattman
+
+    - Niall Morrison
+
+
+    Game Strategist:
+
+    -
+    Daniel Battersby
 
 
     Promotion:
@@ -9938,9 +9946,10 @@ MonoBehaviour:
     - Carl Bertolino
 
 
-    Made for Global Game Jam
-    2023 at the University of Southampton jam site. Big thanks to those running the
-    event and everyone who supported development and played our game! :)
+    Made for Global
+    Game Jam 2023 at the University of Southampton jam site. Big thanks to those
+    running the event and everyone who supported development and played our game!
+    :)
 
 
 
@@ -10034,8 +10043,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb47051349d0487ea57785d4ee39c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.07
-  cutoff: 2500
+  speed: 0.08
+  cutoff: 7500
 --- !u!114 &1405017415
 MonoBehaviour:
   m_ObjectHideFlags: 0

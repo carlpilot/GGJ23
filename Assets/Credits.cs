@@ -26,6 +26,7 @@ public class Credits : MonoBehaviour {
 
     public void BackToMenu () {
         gss.Transition (0);
+        started = false;
     }
 
     public void StartCredits () {
