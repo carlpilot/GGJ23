@@ -15,9 +15,7 @@ public class Zipline : MonoBehaviour
         if (!Input.GetKey(KeyCode.E)) return;
         var pm = col.GetComponentInParent<PlayerMovement>();
         if (!pm) return;
-        var zd = 0;
-        if (Vector3.Dot(GetDirection(), pm.cam.transform.forward) > 0) zd = 1;
-        else zd = -1;
+        float zd = Vector3.Dot(GetDirection(), pm.cam.transform.forward) > 0 ? 1.0f : -1.0f;
         pm.SetCurrentZipline(this, zd);
     }
 
