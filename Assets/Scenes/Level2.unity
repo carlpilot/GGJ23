@@ -582,7 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clear: 0
-  msg: Damn another cave. No choice but to keep going I guess!
+  msg: Damn, another cave... No choice but to keep going I guess!
   timeout: 10
   isHint: 0
 --- !u!135 &109802854
@@ -2031,8 +2031,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clear: 0
-  msg: To run on walls, run as fast as you can and jump onto them at a shallow angle.
-    You can press jump at any time to jump off the wall.
+  msg: To wall run, build up speed and jump onto the wall at a shallow angle. You
+    can press jump to jump off at any time.
   timeout: 10
   isHint: 1
 --- !u!135 &355637685
@@ -3736,7 +3736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clear: 0
-  msg: Hold 'e' to stay on a zipline. You can get on a zipline when it is green!
+  msg: Hold E to stay on a zipline. You can get on a zipline when it's green!
   timeout: 10
   isHint: 1
 --- !u!135 &741799895
@@ -8460,7 +8460,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1950439143}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1548235478
 MonoBehaviour:
@@ -8475,8 +8475,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clear: 0
-  msg: Look at the size of these roots. I wonder if those crystals have anything
-    to do with it?
+  msg: Look at the size of these roots! Do those crystals have anything to do with
+    it?
   timeout: 10
   isHint: 0
 --- !u!135 &1548235479
@@ -8676,7 +8676,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1950439143}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1642109520
 MonoBehaviour:
@@ -11382,8 +11382,8 @@ Transform:
   m_Children:
   - {fileID: 109802852}
   - {fileID: 2087547424}
-  - {fileID: 1642109519}
   - {fileID: 1548235477}
+  - {fileID: 1642109519}
   m_Father: {fileID: 591948956}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12347,10 +12347,6 @@ PrefabInstance:
       propertyPath: m_isRightToLeft
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 86716955, guid: ef6851743903d97b2876c9681869cd98, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 32
-      objectReference: {fileID: 0}
     - target: {fileID: 1204871680011686137, guid: ef6851743903d97b2876c9681869cd98,
         type: 3}
       propertyPath: m_RootOrder
@@ -12410,6 +12406,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TutorialPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3549196746474602477, guid: ef6851743903d97b2876c9681869cd98,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef6851743903d97b2876c9681869cd98, type: 3}
