@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5400931043984697449}
   - component: {fileID: 5400931043984697448}
   - component: {fileID: 5400931043984697451}
+  - component: {fileID: 3062832601857945519}
+  - component: {fileID: 3002563523800650331}
   m_Layer: 0
   m_Name: rapids1
   m_TagString: Untagged
@@ -4918,3 +4920,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &3062832601857945519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5058281230418269383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebfdd5d25237daf4dac0f78156c75a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &3002563523800650331
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5058281230418269383}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.2960176, y: 5.056897, z: 0.74091315}
+  m_Center: {x: -0.01343048, y: -0.017940188, z: -0.4}
