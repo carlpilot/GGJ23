@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour {
 
     [Header ("Win / Lose Logic")]
     public float loseWait = 2.0f;
-    public GameObject winButton;
+    public GameObject nextLevelButton;
+    public TMP_Text winTitle;
 
     [Header ("Curtains")]
     public Color loseCurtainColour;
@@ -81,7 +82,8 @@ public class GameManager : MonoBehaviour {
         if (!winnable) return;
         winnable = false;
         winMenu.SetActive (true);
-        if (level == SceneManager.sceneCountInBuildSettings - 1) winButton.SetActive (false); // disable next button on last level
+        winTitle.text = "Level " + level + " complete!";
+        if (level == SceneManager.sceneCountInBuildSettings - 1) nextLevelButton.SetActive (false); // disable next button on last level
         curtains.SetColour (winCurtainColour);
         curtains.Close ();
         timer.StopTime ();

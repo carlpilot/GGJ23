@@ -9730,7 +9730,8 @@ MonoBehaviour:
   rank: {fileID: 167815342}
   loadingScoresText: {fileID: 2069092141786483421}
   loseWait: 1
-  winButton: {fileID: 1227855430}
+  nextLevelButton: {fileID: 1227855430}
+  winTitle: {fileID: 440511960}
   loseCurtainColour: {r: 0, g: 0, b: 0, a: 0.9019608}
   winCurtainColour: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 0.9019608}
   startCurtainColour: {r: 0, g: 0, b: 0, a: 0.9019608}
