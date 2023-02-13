@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Lose () {
+        if (!winnable) return; // prevent winning then dying
         winnable = false;
         loseMenu.SetActive (true);
         curtains.SetColour (loseCurtainColour);
