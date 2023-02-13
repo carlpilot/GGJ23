@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
@@ -17,6 +18,13 @@ public class MainMenu : MonoBehaviour {
     public Transform levelScrollView;
     public Sprite[] levelSprites;
 
+    [Header ("Options")]
+    public AudioMixer mixer;
+    public Slider soundVol;
+    public Slider musicVol;
+    public TMP_Text soundVolPct, musicVolPct;
+    public Toggle hintsToggle, dialogueToggle;
+
     private void Start () {
         Time.timeScale = 1;
         if (PlayerPrefs.HasKey ("Username") && isUsernameValid) {
@@ -31,6 +39,14 @@ public class MainMenu : MonoBehaviour {
         usernameInput.characterValidation = TMP_InputField.CharacterValidation.Alphanumeric;
 
         LoadLevels ();
+
+        if(PlayerPrefs.HasKey("MusicVolume") && PlayerPrefs.HasKey("SoundVolume")) {
+            Debug.Log ("Found volume preferences: Sound=" + PlayerPrefs.GetFloat ("SoundVolume") + " Music=" + PlayerPrefs.GetFloat ("MusicVolume"));
+            soundVol.value = PlayerPrefs.GetFloat ("SoundVolume");
+            musicVol.value = PlayerPrefs.GetFloat ("MusicVolume");
+            UpdateSoundVolume ();
+            UpdateMusicVolume ();
+        }
     }
 
     private void Update () {
@@ -68,6 +84,26 @@ public class MainMenu : MonoBehaviour {
 
     public bool isUsernameValid { get => ValidateUsername (PlayerPrefs.GetString ("Username")) == ""; }
     public bool isEnteredUsernameValid { get => ValidateUsername (usernameInput.text) == ""; }
+
+    public void UpdateHintsPreference () => PlayerPrefs.SetInt ("ShowHints", hintsToggle.isOn ? 1 : 0);
+    public void UpdateDialoguePreference () => PlayerPrefs.SetInt ("ShowDialogue", dialogueToggle.isOn ? 1 : 0);
+    public void UpdateSoundVolume () {
+        soundVolPct.text = Mathf.RoundToInt (soundVol.value / soundVol.maxValue * 100.0f) + "%";
+        float sv = convertSliderTo_dB (soundVol.value / soundVol.maxValue);
+        mixer.SetFloat ("SoundVolume", sv);
+        PlayerPrefs.SetFloat ("SoundVolume", soundVol.value);
+    }
+    public void UpdateMusicVolume () {
+        musicVolPct.text = Mathf.RoundToInt (musicVol.value / musicVol.maxValue * 100.0f) + "%";
+        float mv = convertSliderTo_dB (musicVol.value / musicVol.maxValue);
+        mixer.SetFloat ("MusicVolume", mv);
+        PlayerPrefs.SetFloat ("MusicVolume", musicVol.value);
+    }
+
+    // slider 0-1, convert to logarithmic scale from -80 dB to 20 dB where 0.5 is 0 dB
+    public float convertSliderTo_dB (float sliderValue) {
+        return 70.1734f * Mathf.Log10 (25.6098f * sliderValue + 1) - 80;
+    }
 
     public void SwitchScene (int scene) => SceneManager.LoadScene (scene);
 
