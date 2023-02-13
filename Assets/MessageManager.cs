@@ -16,10 +16,16 @@ public class MessageManager : MonoBehaviour
     char[] remainingQuoteText;
     string currentQuoteText;
 
+    bool showHints = true;
+    bool showDialogue = true;
+
     void Awake()
     {
         m = this;
         remainingQuoteText = new char[0];
+
+        if (PlayerPrefs.HasKey ("ShowHints")) showHints = PlayerPrefs.GetInt ("ShowHints") == 1;
+        if (PlayerPrefs.HasKey ("ShowDialogue")) showDialogue = PlayerPrefs.GetInt ("ShowDialogue") == 1;
     }
     
     void Update()
@@ -56,6 +62,7 @@ public class MessageManager : MonoBehaviour
     }
 
     public void SetHintWithTimeout(string msg, float timeout){
+        if (!showHints) return;
         hintText.gameObject.SetActive(true);
         hintTimer = timeout;
         hintText.text = msg;
@@ -68,6 +75,7 @@ public class MessageManager : MonoBehaviour
     }
 
     public void SetQuote(string msg){
+        if (!showDialogue) return;
         quoteText.gameObject.SetActive(true);
         quoteText.text = "";
         // Creating array of string length 

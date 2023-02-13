@@ -47,6 +47,8 @@ public class MainMenu : MonoBehaviour {
             UpdateSoundVolume ();
             UpdateMusicVolume ();
         }
+        if (PlayerPrefs.HasKey ("ShowHints")) hintsToggle.isOn = PlayerPrefs.GetInt ("ShowHints") == 1;
+        if (PlayerPrefs.HasKey ("ShowDialogue")) dialogueToggle.isOn = PlayerPrefs.GetInt ("ShowDialogue") == 1;
     }
 
     private void Update () {
