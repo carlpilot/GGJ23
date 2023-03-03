@@ -76,3 +76,7 @@ crashlytics-build.properties
 # MacOS
 .DS_Store
 
+# SecretCode
+/[Aa]ssets/Scripts/SecretCode.cs
+/[Aa]ssets/Scripts/SecretCode.cs.meta
+
